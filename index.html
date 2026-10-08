@@ -1,1 +1,2732 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khuyến cáo KDIGO 2026 về thực hành lâm sàng thiếu máu trong bệnh thận mạn</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+<style>
+/* =========================================================
+   MEDICAL LIBRARY — READER DESIGN SYSTEM v2.0
+   Purpose: shared stylesheet for long-form medical documents
+   Works with the existing HTML structure/classes.
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* =========================================================
+   01. DESIGN TOKENS
+   ========================================================= */
+:root {
+  /* Brand */
+  --ml-brand: #b30000;
+  --ml-brand-strong: #860000;
+  --ml-brand-soft: #fbecec;
+  --ml-brand-softer: #fff6f6;
+
+  /* Accent / links */
+  --ml-blue: #004b87;
+  --ml-blue-strong: #0056b3;
+  --ml-blue-soft: #edf5fb;
+
+  /* Recommendation / evidence */
+  --ml-class-i: #2f8f46;
+  --ml-class-iia: #ffc107;
+  --ml-class-iib: #f28c00;
+  --ml-class-iii: #d9363e;
+  --ml-level-a: #00798c;
+  --ml-level-b1: #459a96;
+  --ml-level-b2: #67a8a4;
+  --ml-level-c: #83b6b2;
+
+  /* Surfaces */
+  --ml-page-bg: #f2f4f6;
+  --ml-surface: #ffffff;
+  --ml-surface-soft: #f8fafb;
+  --ml-surface-raised: #ffffff;
+
+  /* Text */
+  --ml-text: #172033;
+  --ml-text-secondary: #4a4a4a;
+  --ml-muted: #687384;
+  --ml-heading: #172033;
+  --ml-inverse: #ffffff;
+
+  /* Borders / dividers */
+  --ml-border: #dfe4e8;
+  --ml-border-strong: #c9d1d9;
+  --ml-document-border: #d7dde2;
+
+  /* Geometry */
+  --ml-sidebar-width: 286px;
+  --ml-content-gap: 28px;
+  --ml-container-max: 1320px;
+  --ml-article-max: 960px;
+  --ml-radius-sm: 8px;
+  --ml-radius-md: 12px;
+  --ml-radius-lg: 16px;
+  --ml-radius-pill: 999px;
+
+  /* Spacing */
+  --ml-space-1: 4px;
+  --ml-space-2: 8px;
+  --ml-space-3: 12px;
+  --ml-space-4: 16px;
+  --ml-space-5: 20px;
+  --ml-space-6: 24px;
+  --ml-space-7: 32px;
+  --ml-space-8: 40px;
+  --ml-space-9: 56px;
+
+  /* Typography */
+  --ml-font-ui: "Roboto", "Segoe UI", Arial, sans-serif;
+  --ml-font-reading: "Noto Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --ml-body-size: 16px;
+  --ml-body-size-tablet: 15.5px;
+  --ml-body-size-mobile: 15.5px;
+  --ml-line-height: 1.68;
+  --ml-paragraph-indent: 2rem;
+  --ml-font-scale: 1;
+
+  /* Effects */
+  --ml-shadow-sm: 0 2px 8px rgba(20, 30, 40, .05);
+  --ml-shadow-md: 0 8px 28px rgba(20, 30, 40, .07);
+  --ml-shadow-lg: 0 12px 28px rgba(20, 30, 40, .10);
+  --ml-focus-ring: 0 0 0 3px rgba(179, 0, 0, .18);
+
+  /* Layers */
+  --ml-z-toc: 40;
+  --ml-z-sticky: 60;
+  --ml-z-modal: 100;
+  --ml-z-print-watermark: 9999;
+}
+
+/* Backward-compatible aliases used by the current HTML/JS. */
+:root {
+  --brand: var(--ml-brand);
+  --brand-dark: var(--ml-brand-strong);
+  --brand-soft: var(--ml-brand-soft);
+  --blue: var(--ml-blue);
+  --blue-light: var(--ml-blue-strong);
+  --class-i: var(--ml-class-i);
+  --class-iia: var(--ml-class-iia);
+  --class-iib: var(--ml-class-iib);
+  --class-iii: var(--ml-class-iii);
+  --level-a: var(--ml-level-a);
+  --level-b: var(--ml-level-b1);
+  --level-b1: var(--ml-level-b1);
+  --level-b2: var(--ml-level-b2);
+  --level-c: var(--ml-level-c);
+  --page-bg: var(--ml-page-bg);
+  --surface: var(--ml-surface);
+  --surface-soft: var(--ml-surface-soft);
+  --text: var(--ml-text);
+  --text-secondary: var(--ml-text-secondary);
+  --muted: var(--ml-muted);
+  --border: var(--ml-border);
+  --document-border: var(--ml-document-border);
+  --sidebar-width: var(--ml-sidebar-width);
+  --content-gap: var(--ml-content-gap);
+  --body-size: var(--ml-body-size);
+  --line-height: var(--ml-line-height);
+  --paragraph-indent: var(--ml-paragraph-indent);
+  --font-scale: var(--ml-font-scale);
+}
+
+/* =========================================================
+   02. THEME
+   ========================================================= */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ml-page-bg: #0d0f12;
+  --ml-surface: #15181c;
+  --ml-surface-soft: #1b1f24;
+  --ml-surface-raised: #1a1e23;
+
+  --ml-text: #eef2f6;
+  --ml-text-secondary: #c0c8d1;
+  --ml-muted: #a3adba;
+  --ml-heading: #f5f7fa;
+
+  --ml-border: #30363d;
+  --ml-border-strong: #414952;
+  --ml-document-border: #30363d;
+
+  --ml-brand-soft: #361b1f;
+  --ml-brand-softer: #241517;
+  --ml-blue-soft: #172733;
+
+  --ml-shadow-sm: 0 2px 8px rgba(0, 0, 0, .20);
+  --ml-shadow-md: 0 8px 28px rgba(0, 0, 0, .24);
+  --ml-shadow-lg: 0 12px 28px rgba(0, 0, 0, .28);
+}
+
+/* =========================================================
+   03. BASE / RESET
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ml-page-bg);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 0;
+  margin: 0;
+  background: var(--ml-page-bg);
+  color: var(--ml-text);
+  font-family: var(--ml-font-reading);
+  font-size: var(--ml-body-size);
+  line-height: var(--ml-line-height);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+select,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+select {
+  color: inherit;
+}
+
+:where(a, button, select, input, textarea):focus-visible {
+  outline: 3px solid rgba(179, 0, 0, .24);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(179, 0, 0, .14);
+}
+
+/* Respect reduced-motion users without breaking anchor positioning. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* =========================================================
+   04. READER LAYOUT
+   ========================================================= */
+.reader-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, var(--ml-sidebar-width)) minmax(0, 1fr);
+  gap: var(--ml-content-gap);
+  align-items: start;
+  width: min(calc(100% - 40px), var(--ml-container-max));
+  margin-inline: auto;
+  padding: 24px 0 70px;
+}
+
+.reader-main {
+  min-width: 0;
+  align-self: start;
+}
+
+.mobile-sticky-shell {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   05. DESKTOP TOC
+   ========================================================= */
+.toc-panel {
+  position: sticky;
+  top: 24px;
+  z-index: var(--ml-z-toc);
+  height: calc(100dvh - 48px);
+  min-height: 220px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 18px 10px;
+  background: var(--ml-surface);
+  border: 1px solid var(--ml-border);
+  border-radius: var(--ml-radius-lg);
+  box-shadow: var(--ml-shadow-md);
+  scrollbar-width: thin;
+}
+
+.toc-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-panel::-webkit-scrollbar-thumb {
+  background: #b9c0c7;
+  border-radius: var(--ml-radius-pill);
+}
+
+.toc-head {
+  position: sticky;
+  top: -18px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ml-space-3);
+  padding: 3px 12px 12px;
+  background: var(--ml-surface);
+  color: var(--ml-brand);
+  font-family: var(--ml-font-ui);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .15em;
+}
+
+#progressText {
+  color: var(--ml-muted);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#tocList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#tocList li {
+  margin: 2px 0;
+}
+
+#tocList a {
+  display: block;
+  padding: 7px 10px;
+  border-left: 2px solid transparent;
+  border-radius: var(--ml-radius-sm);
+  color: var(--ml-muted);
+  text-decoration: none;
+  font-family: var(--ml-font-ui);
+  font-size: 12.5px;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+#tocList a:is(:hover, .active) {
+  color: var(--ml-brand);
+  background: var(--ml-brand-soft);
+}
+
+#tocList a.active {
+  border-left-color: var(--ml-brand);
+  font-weight: 900;
+}
+
+#tocList .level-3 a {
+  padding-left: 24px;
+  font-size: 12px;
+}
+
+#tocList .level-4 a {
+  padding-left: 37px;
+  font-size: 11.5px;
+}
+
+#tocList .level-5 a {
+  padding-left: 48px;
+  font-size: 11px;
+}
+
+/* =========================================================
+   06. STICKY DOCUMENT HERO
+   ========================================================= */
+.reader-hero {
+  position: sticky;
+  top: 0;
+  z-index: var(--ml-z-sticky);
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 28px 34px;
+  background: var(--ml-surface);
+  border: 1px solid var(--ml-border);
+  border-radius: var(--ml-radius-lg);
+  box-shadow: var(--ml-shadow-lg);
+  isolation: isolate;
+}
+
+.reader-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--ml-surface);
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--ml-brand);
+  font-family: var(--ml-font-ui);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.reader-hero h1 {
+  margin: 0;
+  color: var(--ml-heading);
+  font-size: clamp(25px, 2.6vw, 38px);
+  line-height: 1.16;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+
+.reader-hero p:not(.kicker) {
+  margin: 12px 0 0;
+  color: var(--ml-muted);
+  font-size: 13px;
+}
+
+.hero-contact {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hero-contact::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-contact-item {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  color: var(--ml-text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.hero-contact-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 16px;
+  width: 16px;
+  min-width: 16px;
+  color: var(--ml-muted);
+}
+
+.contact-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.facebook-icon {
+  color: #1877f2;
+}
+
+.mail-icon {
+  color: var(--ml-blue-strong);
+}
+
+.hero-contact a,
+.hero-reading-link a {
+  min-width: 0;
+  color: var(--ml-text);
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+.hero-contact a:hover,
+.hero-reading-link a:hover {
+  color: var(--ml-brand);
+  text-decoration: underline;
+}
+
+.hero-reading-link {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ml-border);
+  color: var(--ml-text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.hero-reading-link-label {
+  flex: 0 0 auto;
+  font-weight: 800;
+}
+
+.hero-reading-link a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.hero-meta span {
+  padding: 4px 8px;
+  border: 1px solid var(--ml-border);
+  border-radius: 6px;
+  background: var(--ml-surface-soft);
+  color: var(--ml-muted);
+  font-family: var(--ml-font-ui);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   07. DOCUMENT SURFACE
+   ========================================================= */
+.document-surface {
+  width: 100%;
+  background: var(--ml-surface);
+  border: 1px solid var(--ml-border);
+  border-radius: var(--ml-radius-lg);
+  box-shadow: var(--ml-shadow-md);
+  overflow: clip;
+}
+
+.document-surface article {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 30px 30px 56px;
+  color: var(--ml-text);
+  font-size: calc(var(--ml-body-size) * var(--ml-font-scale));
+  line-height: var(--ml-line-height);
+  text-align: justify;
+  text-justify: auto;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.document-surface article,
+.document-surface article * {
+  box-sizing: border-box;
+}
+
+/* Do not inherit article justification into UI-like controls/components. */
+.document-surface :where(.toc, .badge, .step-number, .hero-meta, .figure-placeholder) {
+  text-align: initial;
+}
+
+.document-surface :where(p, li, dt, dd, td, th) {
+  color: var(--ml-text);
+}
+
+.document-surface :where(p, li, dt, dd, td, th) {
+  text-align: justify;
+}
+
+.document-surface p {
+  margin: 0 0 1rem;
+}
+
+.document-surface a {
+  color: var(--ml-blue-strong);
+  text-underline-offset: 2px;
+}
+
+.document-surface a:hover {
+  color: var(--ml-brand);
+}
+
+/* =========================================================
+   08. TYPOGRAPHY / DOCUMENT HIERARCHY
+   ========================================================= */
+.document-surface :where(h1, h2, h3, h4, h5) {
+  margin-left: 0;
+  margin-right: 0;
+  font-family: var(--ml-font-reading);
+  font-weight: 800;
+  text-wrap: balance;
+  scroll-margin-top: 24px;
+}
+
+.document-surface h1 {
+  margin-top: 2rem;
+  margin-bottom: 1.2rem;
+  color: var(--ml-brand);
+  font-size: 2.2em;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -.01em;
+}
+
+.document-surface h2 {
+  margin-top: 2em;
+  margin-bottom: .8em;
+  color: var(--ml-brand);
+  font-size: 1.8em;
+  line-height: 1.3;
+}
+
+.document-surface h3 {
+  margin-top: 1.8em;
+  margin-bottom: .7em;
+  color: var(--ml-blue);
+  font-size: 1.4em;
+  line-height: 1.35;
+}
+
+.document-surface h4 {
+  margin-top: 1.5em;
+  margin-bottom: .5em;
+  color: var(--ml-blue-strong);
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+.document-surface h5 {
+  margin-top: 1.2em;
+  margin-bottom: .4em;
+  color: var(--ml-heading);
+  font-size: 1.1em;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.document-surface article > p {
+  text-indent: var(--ml-paragraph-indent);
+}
+
+.document-surface :where(.info-box p, .step-card p, table p, .figure-container p, .callout p, .abbr-container p, .abbreviations p) {
+  text-indent: 0;
+}
+
+.document-surface ul,
+.document-surface ol {
+  margin: .6rem 0 1rem;
+  padding-inline-start: 2rem;
+}
+
+.document-surface li {
+  margin-bottom: .35rem;
+}
+
+/* =========================================================
+   09. MEDIA / FIGURES
+   ========================================================= */
+.document-surface figure {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.document-surface :where(img, svg, video) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  object-fit: contain;
+}
+
+.document-surface .image-caption {
+  margin-top: 8px;
+  color: var(--ml-text-secondary);
+  font-size: .85em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.document-surface .figure-placeholder {
+  margin: 20px 0;
+  padding: 30px;
+  border: 2px dashed var(--ml-border-strong);
+  border-radius: var(--ml-radius-sm);
+  background: var(--ml-surface-soft);
+  color: var(--ml-text-secondary);
+  text-align: center;
+  font-weight: 800;
+}
+
+/* =========================================================
+   10. TABLES
+   ========================================================= */
+.document-surface .table-wrapper {
+  width: 100%;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border-radius: var(--ml-radius-sm);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.document-surface table {
+  width: 100%;
+  min-width: 100%;
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: var(--ml-surface);
+}
+
+.document-surface caption {
+  padding: 0 0 10px;
+  color: var(--ml-heading);
+  font-size: .95em;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.document-surface :where(th, td) {
+  padding: 10px 12px;
+  border: 1px solid var(--ml-document-border);
+  vertical-align: top;
+  text-align: left;
+}
+
+.document-surface th {
+  background: #f4f6f8;
+  color: #222;
+  font-weight: 800;
+}
+
+.document-surface .table-section-header {
+  background: #d9e1e8 !important;
+  color: #222 !important;
+  font-weight: 800;
+}
+
+.document-surface .ws-nowrap {
+  white-space: nowrap;
+}
+
+.document-surface tbody tr:hover {
+  background: rgba(179, 0, 0, .025);
+}
+
+.document-surface .rec-table th {
+  background: var(--ml-blue) !important;
+  color: #fff !important;
+  text-align: center !important;
+}
+
+/* Optional sticky table header for tall overflow containers. */
+.document-surface .table-wrapper.is-tall th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* =========================================================
+   11. RECOMMENDATIONS / EVIDENCE BADGES
+   ========================================================= */
+.document-surface :where(.class-I, .class-IIa, .class-IIb, .class-III,
+  .level-A, .level-B, .level-b1, .level-b2, .level-C) {
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-weight: 800 !important;
+  font-family: var(--ml-font-ui);
+}
+
+.document-surface .class-I { background: var(--ml-class-i) !important; color: #fff !important; }
+.document-surface .class-IIa { background: var(--ml-class-iia) !important; color: #000 !important; }
+.document-surface .class-IIb { background: var(--ml-class-iib) !important; color: #000 !important; }
+.document-surface .class-III { background: var(--ml-class-iii) !important; color: #fff !important; }
+.document-surface .level-A { background: var(--ml-level-a) !important; color: #fff !important; }
+.document-surface .level-B,
+.document-surface .level-b1 { background: var(--ml-level-b1) !important; color: #fff !important; }
+.document-surface .level-b2 { background: var(--ml-level-b2) !important; color: #fff !important; }
+.document-surface .level-C { background: var(--ml-level-c) !important; color: #000 !important; }
+
+/* =========================================================
+   12. DOCUMENT COMPONENTS
+   ========================================================= */
+.document-surface .highlight-text {
+  color: var(--ml-brand) !important;
+  font-weight: 800;
+}
+
+.document-surface .info-box {
+  margin: 0 0 1.5rem;
+  padding: 15px;
+  border-inline-start: 4px solid var(--ml-blue);
+  border-radius: 0 var(--ml-radius-sm) var(--ml-radius-sm) 0;
+  background: var(--ml-surface-soft);
+}
+
+.document-surface .step-card {
+  margin: 0 0 15px;
+  padding: 16px;
+  border: 1px solid var(--ml-document-border);
+  border-radius: 10px;
+  background: var(--ml-surface);
+  box-shadow: var(--ml-shadow-sm);
+}
+
+.document-surface .step-card strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ml-blue-strong);
+  font-size: 1.1em;
+}
+
+.document-surface .step-number {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 10px;
+  border-radius: 50%;
+  background: var(--ml-brand);
+  color: #fff;
+  font-weight: 800;
+  font-family: var(--ml-font-ui);
+  line-height: 1;
+}
+
+/* =========================================================
+   13. ABBREVIATIONS
+   ========================================================= */
+.document-surface .abbreviations {
+  margin-bottom: 2rem;
+  padding: 15px 20px;
+  border-inline-start: 4px solid #c0c0c0;
+  background: var(--ml-surface-soft);
+  color: var(--ml-text-secondary);
+  line-height: 1.6;
+}
+
+.document-surface .abbr-container {
+  margin-bottom: 2rem;
+  padding: 20px 25px;
+  border: 1px solid var(--ml-document-border);
+  border-top: 4px solid #008000;
+  border-radius: 10px;
+  background: var(--ml-surface);
+  box-shadow: var(--ml-shadow-sm);
+}
+
+.document-surface .compact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px 20px;
+  margin: 0;
+}
+
+.document-surface .abbr-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--ml-document-border);
+}
+
+.document-surface .abbr-row dt {
+  flex: 0 0 95px;
+  margin: 0;
+  color: #008000;
+  font-weight: 900;
+}
+
+.document-surface .abbr-row dd {
+  flex: 1;
+  margin: 0;
+  color: var(--ml-text);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.document-surface .vi-trans {
+  display: block;
+  margin-top: 3px;
+  color: var(--ml-text-secondary);
+  font-size: .95em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* =========================================================
+   14. LAYOUT HELPERS / FORMULA SUPPORT
+   ========================================================= */
+.document-surface .grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.document-surface .grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.document-surface .flex-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.document-surface .flex-column-item {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.document-surface mjx-container {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.document-surface mjx-container[display="true"] {
+  margin: 1.2rem 0 !important;
+}
+
+/* =========================================================
+   15. MOBILE TOC
+   ========================================================= */
+.mobile-toc {
+  display: none;
+}
+
+/* =========================================================
+   16. DARK MODE — COMPONENT OVERRIDES
+   ========================================================= */
+html[data-theme="dark"] .reader-hero,
+html[data-theme="dark"] .reader-hero::after,
+html[data-theme="dark"] .document-surface,
+html[data-theme="dark"] .document-surface article,
+html[data-theme="dark"] .toc-panel,
+html[data-theme="dark"] .toc-head,
+html[data-theme="dark"] .mobile-toc,
+html[data-theme="dark"] .document-surface .step-card,
+html[data-theme="dark"] .document-surface .abbr-container {
+  background: var(--ml-surface);
+}
+
+html[data-theme="dark"] .document-surface th {
+  background: #20252b;
+  color: #eef2f6;
+}
+
+html[data-theme="dark"] .document-surface .table-section-header {
+  background: #29333d !important;
+  color: #eef2f6 !important;
+}
+
+html[data-theme="dark"] .document-surface .rec-table th {
+  background: #173f49 !important;
+  color: #fff !important;
+}
+
+html[data-theme="dark"] .document-surface :where(td, th) {
+  border-color: var(--ml-border) !important;
+}
+
+html[data-theme="dark"] .document-surface :where(.info-box, .abbreviations, .figure-placeholder) {
+  background: var(--ml-surface-raised);
+  border-color: var(--ml-border);
+}
+
+html[data-theme="dark"] .document-surface .abbr-row {
+  border-color: var(--ml-border);
+}
+
+html[data-theme="dark"] .document-surface .abbr-row dt {
+  color: #62c977;
+}
+
+html[data-theme="dark"] .document-surface .vi-trans,
+html[data-theme="dark"] .document-surface .image-caption {
+  color: #b8c1cc;
+}
+
+html[data-theme="dark"] .document-surface a {
+  color: #8ab4ff;
+}
+
+html[data-theme="dark"] .document-surface .highlight-text {
+  color: #ff7777 !important;
+}
+
+/* Preserve semantic recommendation colors in dark mode. */
+html[data-theme="dark"] .document-surface .class-I { background: #4caf50 !important; color: #fff !important; }
+html[data-theme="dark"] .document-surface .class-IIa { background: #ffc107 !important; color: #000 !important; }
+html[data-theme="dark"] .document-surface .class-IIb { background: #ff9800 !important; color: #000 !important; }
+html[data-theme="dark"] .document-surface .class-III { background: #f44336 !important; color: #fff !important; }
+html[data-theme="dark"] .document-surface .level-A { background: #00798c !important; color: #fff !important; }
+html[data-theme="dark"] .document-surface .level-B,
+html[data-theme="dark"] .document-surface .level-b1 { background: #459a96 !important; color: #fff !important; }
+html[data-theme="dark"] .document-surface .level-b2 { background: #67a8a4 !important; color: #fff !important; }
+html[data-theme="dark"] .document-surface .level-C { background: #83b6b2 !important; color: #000 !important; }
+
+/* Compatibility bridge for legacy inline black text in dark documents. */
+html[data-theme="dark"] .document-surface [style*="color: #000000"],
+html[data-theme="dark"] .document-surface [style*="color:#000000"],
+html[data-theme="dark"] .document-surface [style*="color: #000"],
+html[data-theme="dark"] .document-surface [style*="color:#000"] {
+  color: #eef2f6 !important;
+}
+
+/* =========================================================
+   17. RESPONSIVE SYSTEM
+   ========================================================= */
+@media (max-width: 980px) {
+  :root {
+    --ml-body-size: var(--ml-body-size-tablet);
+  }
+
+  .reader-layout {
+    display: block;
+    width: min(calc(100% - 20px), var(--ml-container-max));
+    padding-top: 10px;
+  }
+
+  .toc-panel {
+    display: none;
+  }
+
+  .mobile-toc {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 12px;
+    padding: 9px 11px;
+    border: 1px solid var(--ml-border);
+    border-radius: var(--ml-radius-md);
+    background: var(--ml-surface);
+  }
+
+  .mobile-toc label {
+    flex: 0 0 auto;
+    color: var(--ml-muted);
+    font-family: var(--ml-font-ui);
+    font-size: 11px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .mobile-toc select {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 44px;
+    height: 44px;
+    padding: 0 8px;
+    border: 1px solid var(--ml-border);
+    border-radius: var(--ml-radius-sm);
+    background: var(--ml-surface);
+    color: var(--ml-text);
+  }
+
+  /* Hero + mobile TOC share the same sticky context. */
+  .mobile-sticky-shell {
+    position: sticky;
+    top: 0;
+    z-index: var(--ml-z-sticky);
+    padding-top: 10px;
+    background: var(--ml-page-bg);
+  }
+
+  .reader-hero {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 14px;
+    padding: 20px;
+    border-radius: var(--ml-radius-md);
+    box-shadow: var(--ml-shadow-md);
+  }
+
+  .reader-hero h1 {
+    font-size: 24px;
+  }
+
+  .document-surface article {
+    padding: 20px 18px 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --ml-body-size: var(--ml-body-size-mobile);
+    --ml-paragraph-indent: 0;
+    --ml-line-height: 1.62;
+  }
+
+  .reader-layout {
+    width: calc(100% - 12px);
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+
+  .mobile-sticky-shell {
+    padding-top: 8px;
+  }
+
+  .reader-hero {
+    padding: 16px 14px;
+    border-radius: var(--ml-radius-md);
+  }
+
+  .reader-hero h1 {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  .reader-hero p:not(.kicker),
+  .hero-contact-item,
+  .hero-reading-link {
+    font-size: 12.5px;
+  }
+
+  .hero-contact {
+    gap: 14px;
+  }
+
+  .hero-meta {
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .hero-meta span {
+    font-size: 9.5px;
+  }
+
+  .document-surface {
+    border-radius: var(--ml-radius-md);
+  }
+
+  .document-surface article {
+    padding: 16px 14px 35px;
+  }
+
+  .document-surface :where(a, td, th) {
+    overflow-wrap: anywhere;
+  }
+
+  .document-surface h1 { font-size: 1.45em; margin: 1.4rem 0 .8rem; }
+  .document-surface h2 { font-size: 1.3em; margin: 1.3em 0 .6em; }
+  .document-surface h3 { font-size: 1.15em; margin: 1.1em 0 .5em; }
+  .document-surface h4 { font-size: 1.05em; margin: 1em 0 .4em; }
+  .document-surface h5 { font-size: .95em; }
+
+  .document-surface :where(h1, h2, h3, h4, h5) {
+    scroll-margin-top: 12px;
+  }
+
+  .document-surface article > p {
+    text-indent: 0;
+  }
+
+  .document-surface table {
+    font-size: 13.5px;
+  }
+
+  .document-surface .table-wrapper {
+    touch-action: pan-x;
+  }
+
+  .document-surface .table-wrapper table {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .document-surface :where(th, td) {
+    padding: 7px 8px;
+  }
+
+  .document-surface :where(.info-box, .step-card, .abbreviations) {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .document-surface .grid-2col,
+  .document-surface .grid-3col {
+    grid-template-columns: 1fr;
+  }
+
+  .document-surface .flex-column-item {
+    min-width: 100%;
+  }
+
+  .document-surface .abbr-container {
+    padding: 14px;
+  }
+
+  .document-surface .compact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .document-surface .abbr-row {
+    display: block;
+  }
+
+  .document-surface .abbr-row dt {
+    margin-bottom: 2px;
+  }
+}
+
+/* Very narrow phones: prevent the sticky shell from eating the viewport. */
+@media (max-width: 380px) {
+  .reader-layout {
+    width: 100%;
+  }
+
+  .reader-hero {
+    padding-inline: 12px;
+  }
+
+  .mobile-toc {
+    padding-inline: 8px;
+  }
+
+  .mobile-toc select {
+    min-height: 42px;
+    height: 42px;
+  }
+}
+
+/* =========================================================
+   PRINT / PDF
+   ========================================================= */
+
+/* Print-only HTML helpers are hidden in the normal reading view.
+   The actual printed header/footer are generated by @page margin boxes. */
+.print-header,
+.print-footer,
+.print-layout,
+.print-watermark{
+  display:none !important;
+  visibility:hidden !important;
+}
+
+@media print{
+
+  @page{
+    size:A4 portrait;
+    margin:9mm 18mm 9mm 18mm;
+    background:#ffffff;
+
+    /* ===== GÓC TRÊN ===== */
+    @top-left-corner{
+      content:"";
+      background:#860000;
+    }
+    @top-right-corner{
+      content:"";
+      background:#860000;
+    }
+
+    @top-left{
+      content:"Khuyến cáo KDIGO 2026 về thực hành lâm sàng thiếu máu trong bệnh thận mạn";
+      background:#860000;
+      color:#fff;
+      font-family:"Noto Sans","Segoe UI",Roboto,Arial,sans-serif;
+      font-size:8pt;
+      font-weight:800;
+      white-space:nowrap;
+      text-align:left;
+      vertical-align:middle;
+      padding:1mm 4mm;
+    }
+
+    @top-center{
+      content:"";
+      background:#860000;
+    }
+
+    @top-right{
+      content:"Biên dịch: BS. Trần Thanh Hoàng Linh";
+      background:#860000;
+      color:#fff;
+      font-family:"Noto Sans","Segoe UI",Roboto,Arial,sans-serif;
+      font-size:8pt;
+      font-weight:800;
+      white-space:nowrap;
+      text-align:right;
+      vertical-align:middle;
+      padding:1mm 4mm;
+    }
+
+    /* ===== GÓC DƯỚI ===== */
+    @bottom-left-corner{
+      content:"";
+      background:#e3e3e3;
+    }
+    @bottom-right-corner{
+      content:"";
+      background:#e3e3e3;
+    }
+
+    @bottom-left{
+      content:"BS. Hoàng Linh";
+      background:#e3e3e3;
+      color:#111;
+      font-family:"Noto Sans","Segoe UI",Roboto,Arial,sans-serif;
+      font-size:7pt;
+      font-weight:700;
+      white-space:nowrap;
+      text-align:left;
+      vertical-align:middle;
+      padding:1mm 4mm;
+    }
+
+    @bottom-center{
+      content:"Link đọc bài viết: https://huberton176.github.io/kdigo2026anemia_ckd/";
+      background:#e3e3e3;
+      color:#111;
+      font-family:"Noto Sans","Segoe UI",Roboto,Arial,sans-serif;
+      font-size:7pt;
+      font-weight:700;
+      white-space:nowrap;
+      text-align:center;
+      vertical-align:middle;
+      padding:1mm;
+    }
+
+    @bottom-right{
+      content:counter(page);
+      background:#e3e3e3;
+      color:#111;
+      font-family:"Noto Sans","Segoe UI",Roboto,Arial,sans-serif;
+      font-size:7pt;
+      font-weight:700;
+      white-space:nowrap;
+      text-align:right;
+      vertical-align:middle;
+      padding:1mm 4mm;
+    }
+  }
+
+  html,
+  body{
+    background:#fff!important;
+    color:#111!important;
+    margin:0!important;
+    padding:0!important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  body::before,
+  body::after{
+    content:none!important;
+    display:none!important;
+  }
+
+  .reader-layout{
+    position:relative!important;
+    z-index:auto!important;
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .toc-panel,
+  .mobile-toc,
+  .print-header,
+  .print-footer{
+    display:none!important;
+  }
+
+  .reader-main{
+    display:block!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .mobile-sticky-shell{
+    position:static!important;
+    width:100%!important;
+    margin:0 0 7mm!important;
+    padding:0!important;
+    background:transparent!important;
+    break-inside:avoid-page;
+    page-break-inside:avoid;
+  }
+
+  .reader-hero{
+    position:static!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    padding:7mm 9mm!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+    break-inside:avoid-page;
+    page-break-inside:avoid;
+    box-shadow:none!important;
+    border:0.3mm solid #cfd5da!important;
+    border-radius:5mm!important;
+    background:#fff!important;
+  }
+
+  .reader-hero::after{
+    display:none!important;
+  }
+
+  .document-surface{
+    width:100%!important;
+    margin:0!important;
+    box-shadow:none!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+  }
+
+  .document-surface article{
+    width:100%!important;
+    background:transparent!important;
+  }
+
+  .print-watermark{
+    display:flex!important;
+    visibility:visible!important;
+    position:fixed!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    width:auto!important;
+    height:150vh!important;
+    align-items:center!important;
+    justify-content:center!important;
+    pointer-events:none!important;
+    opacity:.20!important;
+    z-index:9999!important;
+  }
+
+  .print-watermark img{
+    display:block!important;
+    width:auto!important;
+    height:150vh!important;
+    max-width:90vw!important;
+    margin:0!important;
+    object-fit:contain!important;
+  }
+
+  .document-surface *{
+    position:relative;
+    z-index:1;
+  }
+
+  .document-surface h1,
+  .document-surface h2,
+  .document-surface h3,
+  .document-surface h4,
+  .document-surface h5,
+  .document-surface figure,
+  .document-surface table,
+  .document-surface tr,
+  .document-surface .info-box,
+  .document-surface .step-card,
+  .document-surface .abbr-container,
+  .document-surface .abbreviations{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+
+  .document-surface table{
+    break-inside:auto;
+    page-break-inside:auto;
+  }
+
+  .document-surface thead{
+    display:table-header-group;
+  }
+
+  .document-surface tfoot{
+    display:table-footer-group;
+  }
+
+  .document-surface .table-wrapper{
+    overflow:visible!important;
+    break-inside:auto;
+  }
+
+  a{
+    color:#004b87!important;
+    text-decoration:none!important;
+  }
+}
+</style>
+
+<body>
+
+<div class="reader-layout">
+
+  <aside class="toc-panel" aria-label="Mục lục tài liệu">
+    <div class="toc-head">
+      <span>NỘI DUNG</span>
+      <span id="progressText">0%</span>
+    </div>
+    <nav aria-label="Mục lục">
+      <ul id="tocList"></ul>
+    </nav>
+  </aside>
+
+  <main class="reader-main">
+
+    <div class="mobile-sticky-shell">
+      <section class="reader-hero" id="readerHero">
+        <p class="kicker">GUIDELINE</p>
+    <h1 style="color: #b30000; font-size: 25px;">
+            Khuyến cáo KDIGO 2026 về thiếu máu trong bệnh thận mạn
+        </h1>
+        <p>Biên dịch: <strong style="color: #0066cc;">BS. TRẦN THANH HOÀNG LINH</strong></p>
+
+        <div class="hero-contact" aria-label="Thông tin liên hệ">
+          <div class="hero-contact-item">
+            <span class="hero-contact-label" aria-label="Facebook">
+              <svg class="contact-icon facebook-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.019 4.388 11.006 10.125 11.923v-8.432H7.078v-3.491h3.047V9.413c0-3.017 1.792-4.689 4.533-4.689 1.312 0 2.686.235 2.686.235v2.973h-1.514c-1.491 0-1.955.93-1.955 1.885v2.261h3.328l-.532 3.491h-2.796v8.432C19.612 23.079 24 18.092 24 12.073z"/>
+              </svg>
+            </span>
+            <a href="https://www.facebook.com/profile.php?id=61578946288639" target="_blank" rel="noopener noreferrer">Hoàng Linh</a>
+          </div>
+
+          <div class="hero-contact-item">
+            <span class="hero-contact-label" aria-label="Email">
+              <svg class="contact-icon mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/>
+              </svg>
+            </span>
+            <a href="mailto:dr.tthlinh@gmail.com">dr.tthlinh@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="hero-reading-link">
+          <span class="hero-reading-link-label">Link bài đọc:</span>
+          <a href="https://huberton176.github.io/kdigo2026anemia_ckd/" target="_blank" rel="noopener noreferrer">https://huberton176.github.io/kdigo2026anemia_ckd/</a>
+        </div>
+      </section>
+
+      <div class="mobile-toc">
+        <label for="mobileToc">Mục lục</label>
+        <select id="mobileToc"><option value="">Mục lục tài liệu…</option></select>
+      </div>
+    </div>
+
+    <section class="document-surface">
+
+<article>
+
+  
+<h2 id="tom-tat">Tóm tắt</h2>
+
+<p>Hướng dẫn thực hành lâm sàng KDIGO 2026 về thiếu máu trong bệnh thận mạn của tổ chức Kidney Disease: Improving Global Outcomes (KDIGO) là một bản cập nhật quan trọng, được công bố sau hơn một thập kỷ kể từ hướng dẫn trước đó của KDIGO về chủ đề này. Khoảng thời gian này là cần thiết để tích lũy thêm những bằng chứng khoa học mới có ý nghĩa, làm cơ sở cho việc cập nhật hướng dẫn. Hướng dẫn mới bao gồm các khuyến cáo và điểm thực hành được cập nhật về quản lý thiếu máu, tích hợp những bằng chứng gần đây liên quan đến các liệu pháp sắt đường tĩnh mạch và thuốc ức chế prolyl hydroxylase của yếu tố cảm ứng thiếu oxy (hypoxia-inducible factor prolyl hydroxylase inhibitors, HIF-PHIs).</p>
+
+<p>Bài bình luận này của European Renal Best Practice đánh giá một cách phản biện và đưa ra nhận xét về các khuyến cáo và điểm thực hành có liên quan, đặc biệt là những nội dung mới được cập nhật, tập trung vào các khía cạnh quan trọng dưới góc nhìn của châu Âu.</p>
+
+<p>Hướng dẫn mới nhấn mạnh sự cần thiết phải đánh giá toàn diện người bệnh tại thời điểm chẩn đoán nhằm xác định các nguyên nhân gây thiếu máu khác ngoài tình trạng thiếu hụt erythropoietin. Theo đó, thời điểm và phương pháp điều trị cần được cá thể hóa. Ngoài ra, hướng dẫn đưa ra các ngưỡng chỉ định bổ sung sắt đường tĩnh mạch theo hướng chủ động hơn, đặc biệt ở người bệnh đang điều trị bằng thẩm tách máu (haemodialysis). Các thuốc kích thích tạo hồng cầu (erythropoiesis-stimulating agents, ESAs) được khuyến cáo là liệu pháp đầu tay được ưu tiên do vẫn còn những lo ngại về tính an toàn trên tim mạch và các hạn chế về phương pháp luận của những thử nghiệm HIF-PHI hiện có.</p>
+
+<p>Bài bình luận cũng đề cập đến những khía cạnh đặc biệt chưa được xem xét trong hướng dẫn KDIGO mới, chẳng hạn như thai kỳ, các vấn đề cần cân nhắc đặc thù theo giới, cũng như sự tương tác với các thuốc ức chế đồng vận chuyển natri–glucose \(2\) (sodium-glucose cotransporter \(2\) inhibitors, SGLT2 inhibitors) hoặc tình trạng viêm. Bài bình luận đồng thời nhấn mạnh sự khác biệt về quy định quản lý dược giữa châu Âu và Hoa Kỳ trong việc phê duyệt các thuốc HIF-PHI.</p>
+
+<p>Mặc dù ủng hộ phần lớn các khuyến cáo, các bác sĩ chuyên khoa thận tại châu Âu vẫn cần cân nhắc bối cảnh thực tế tại địa phương, tình trạng phê duyệt của cơ quan quản lý dược và những bằng chứng khoa học mới xuất hiện khi áp dụng các hướng dẫn này vào thực hành lâm sàng.</p>
+
+
+<h2 id="gioi-thieu">Giới thiệu</h2>
+
+<p>Thiếu máu là một trong những biến chứng phổ biến nhất và có ý nghĩa lâm sàng quan trọng ở người bệnh mắc bệnh thận mạn (chronic kidney disease, CKD), với tần suất và mức độ nghiêm trọng ngày càng tăng khi mức lọc cầu thận (glomerular filtration rate, GFR) suy giảm. Thiếu máu có liên quan đến sự gia tăng đáng kể gánh nặng bệnh tật, bao gồm suy giảm khả năng hoạt động, giảm chất lượng cuộc sống và tăng nguy cơ xảy ra các biến cố tim mạch, tiến triển bệnh thận mạn và tử vong. Trước gánh nặng bệnh thận mạn trên toàn cầu cùng với số người mắc bệnh ngày càng gia tăng, việc tối ưu hóa quản lý thiếu máu là một ưu tiên trong thực hành lâm sàng và hoạch định chính sách thuộc lĩnh vực thận học [1].</p>
+
+<p>Hướng dẫn thực hành lâm sàng KDIGO 2026 về quản lý thiếu máu trong bệnh thận mạn [1] là bản cập nhật được mong đợi từ lâu của các khuyến cáo năm 2012 [2]. Sự cần thiết phải tích lũy thêm bằng chứng khoa học mới để làm cơ sở cho việc cập nhật hướng dẫn là một trong những nguyên nhân, ít nhất là một phần, dẫn đến sự chậm trễ kéo dài trong việc cập nhật Hướng dẫn về thiếu máu. Hướng dẫn được sửa đổi toàn diện này tích hợp các bằng chứng mới, bao gồm dữ liệu về tính an toàn và hiệu quả của các phác đồ bổ sung sắt đường tĩnh mạch (intravenous, IV) được công bố kể từ các thử nghiệm FIND-CKD (A Randomized Trial of Intravenous Ferric Carboxymaltose Versus Oral Iron in Patients with Chronic Kidney Disease and Iron Deficiency) [3], REVOKE (A Randomized Trial to Evaluate Intravenous and Oral Iron in Chronic Kidney Disease) [4] và PIVOTAL (Proactive IV irOn Therapy in hemodiALysis patients) [5]. Hướng dẫn cũng đưa ra các khuyến cáo về việc sử dụng thuốc ức chế prolyl hydroxylase của yếu tố cảm ứng thiếu oxy (hypoxia-inducible factor prolyl hydroxylase inhibitors, HIF-PHI), sau khi chương trình thử nghiệm lâm sàng giai đoạn \(3\) quy mô lớn đối với ba hoạt chất tiên phong được công bố. Những nghiên cứu này đã tạo cơ sở cho hai Hội nghị về các vấn đề còn tranh luận (Controversies Conferences) do KDIGO tổ chức vào năm \(2019\) [6] và \(2021\) [7]. Hướng dẫn cũng đưa ra những điều chỉnh về thuật ngữ nhằm mô tả chính xác hơn tình trạng tạo hồng cầu trong tình trạng hạn chế cung cấp sắt (iron-restricted erythropoiesis) và thiếu sắt toàn thân (systemic iron deficiency, ID), đồng thời đặc biệt nhấn mạnh việc chăm sóc cá thể hóa, lấy người bệnh làm trung tâm và ra quyết định chung giữa người bệnh và nhân viên y tế.</p>
+
+<p>Thay vì tóm tắt toàn bộ hướng dẫn, bài bình luận này của European Renal Best Practice (ERBP) nhằm đánh giá một cách phản biện những điểm đổi mới quan trọng nhất và ý nghĩa của chúng dưới góc nhìn châu Âu. Bài bình luận nhấn mạnh những vấn đề còn chưa chắc chắn và các cách diễn giải khác nhau đối với bằng chứng hiện có, đồng thời làm nổi bật những thách thức trong việc triển khai hướng dẫn tại châu Âu và các ưu tiên cho nghiên cứu trong tương lai.</p>
+
+
+<h2 id="chan-doan-va-danh-gia-thieu-mau-trong-benh-than-man">Chẩn đoán và đánh giá thiếu máu trong CKD</h2>
+
+<p>Thiếu máu được định nghĩa là tình trạng giảm một hoặc nhiều chỉ số hồng cầu chính được xác định thông qua xét nghiệm tổng phân tích tế bào máu (complete blood count, CBC), bao gồm nồng độ hemoglobin (Hb), hematocrit (Hct) hoặc số lượng hồng cầu (red blood cell, RBC). Trong số đó, nồng độ Hb thấp và/hoặc Hct thấp là những thông số được sử dụng phổ biến nhất để chẩn đoán thiếu máu.</p>
+
+<p>Hướng dẫn KDIGO mới [1] tiếp tục duy trì các tiêu chuẩn chẩn đoán thiếu máu ở người trưởng thành do Tổ chức Y tế Thế giới (World Health Organization, WHO) công bố năm 1968 [8], trong đó thiếu máu được định nghĩa khi \(\text{Hb} < 13\text{ g/dL}\) ở nam giới và \(< 12\text{ g/dL}\) ở nữ giới. Các ngưỡng này cũng đã được sử dụng trong Hướng dẫn KDIGO về thiếu máu năm 2012 [2] và Hướng dẫn KDIGO về bệnh thận mạn năm 2024 [9]. Những ngưỡng Hb này được xây dựng dựa trên một số ít bộ dữ liệu từ châu Âu và Bắc Mỹ. Chúng tôi đồng tình với việc tiếp tục sử dụng các ngưỡng này để định nghĩa thiếu máu. Tuy nhiên, cần lưu ý rằng vào năm 2024, WHO đã đánh giá lại các ngưỡng Hb dựa trên các tổng quan hệ thống và bộ dữ liệu đa quốc gia [10]. Mặc dù các ngưỡng kinh điển dành cho người trưởng thành được giữ nguyên, một số điều chỉnh đã được thực hiện đối với trẻ nhỏ, phụ nữ mang thai và những người sinh sống ở nơi có độ cao lớn so với mực nước biển [10].</p>
+
+<p>Mặc dù cả Hb và Hct đều chịu ảnh hưởng của những thay đổi về thể tích dịch, Hct đặc biệt phụ thuộc vào thể tích huyết tương do phương pháp tính toán chỉ số này. Vì vậy, Hb là một chỉ số đáng tin cậy hơn Hct ở người bệnh mắc bệnh thận mạn, vốn thường xuyên gặp những thay đổi về tình trạng thể tích dịch. Đáng chú ý, thể tích huyết tương cũng thay đổi khi chuyển từ tư thế đứng sang tư thế nằm (tăng gần \(10\%\)), đi kèm với sự thay đổi Hct theo chiều ngược lại [11].</p>
+
+<p>Thiếu máu trong bệnh thận mạn thường là thiếu máu đẳng bào, đẳng sắc. Nguyên nhân chủ yếu bao gồm giảm tương đối quá trình tổng hợp erythropoietin (EPO) tại thận (được cho là phản ánh sự suy giảm khối lượng mô thận còn chức năng và rối loạn cơ chế cảm nhận oxy của thận), giảm thời gian sống của hồng cầu [12, 13], thiếu sắt và các chất dinh dưỡng khác (folat và vitamin B12), mất máu trong quá trình thẩm tách máu (haemodialysis, HD), ức chế đáp ứng của tủy xương với EPO do các độc tố urê huyết, hoặc tình trạng viêm toàn thân.</p>
+
+<p>Thiếu máu là một biểu hiện thường gặp ở nhiều người bệnh mắc bệnh thận mạn, với tỷ lệ hiện mắc tăng lên khi mức lọc cầu thận ước tính (estimated glomerular filtration rate, eGFR) giảm, đặc biệt khi eGFR xuống dưới \(30\text{ mL/min/1.73 m}^2\) [14, 15]. Khi chẩn đoán thiếu máu ở người bệnh mắc bệnh thận mạn, cần tiến hành đánh giá để xác định các nguyên nhân khác hoặc các nguyên nhân phối hợp [12, 13].</p>
+
+<p>Theo hướng dẫn KDIGO mới [1], các xét nghiệm cơ bản bao gồm tổng phân tích tế bào máu, số lượng hồng cầu lưới, ferritin và độ bão hòa transferrin (transferrin saturation, TSAT). Khác với các khuyến cáo KDIGO trước đây, Hướng dẫn KDIGO mới về thiếu máu [1] không chủ đích đưa việc đánh giá vitamin B12 và folat vào các xét nghiệm ban đầu khi khảo sát thiếu máu ở người bệnh mắc bệnh thận mạn [1]. Tỷ lệ thiếu vitamin B12 và folat thay đổi tùy theo giai đoạn bệnh thận mạn, chế độ ăn uống và việc sử dụng thuốc (ví dụ: metformin) [16, 17]. Khác với vitamin B12, dự trữ folat có thể giảm trong quá trình điều trị bằng thuốc kích thích tạo hồng cầu (erythropoiesis-stimulating agents, ESA), đồng thời folat được loại bỏ hiệu quả qua quá trình thẩm tách máu. Vitamin B12 cũng có thể bị loại bỏ, đặc biệt khi sử dụng các kỹ thuật thẩm tách máu với màng lọc thông lượng cao [18]. Hơn nữa, nhiều thực phẩm giàu vitamin B12 có hàm lượng các chất điện giải không phù hợp với người bệnh đang điều trị bằng lọc máu. Đáng tiếc là dữ liệu về tỷ lệ thiếu vitamin B12 ở người bệnh mắc bệnh thận mạn và người bệnh thẩm tách máu hiện còn hạn chế [19]. Tuy nhiên, một tỷ lệ lớn người bệnh lọc máu là người cao tuổi và có tình trạng suy yếu, vốn có nguy cơ thiếu vitamin B12, đặc biệt ở những người đang nằm viện hoặc sinh sống tại các viện dưỡng lão [20]. Việc sử dụng đồng thời nhiều loại thuốc, vốn rất thường gặp ở người bệnh thẩm tách máu và rộng hơn là ở người bệnh mắc bệnh thận mạn, đã được xác định là một yếu tố nguy cơ đáng kể [20]. Cũng cần lưu ý rằng thiếu folat và vitamin B12 là những yếu tố nguy cơ có thể điều chỉnh được đối với suy giảm nhận thức, một biến chứng gây ra gánh nặng đáng kể ở nhóm người bệnh thẩm tách máu [21].</p>
+
+<p>Nhìn chung, chúng tôi đồng tình với khuyến cáo của KDIGO rằng không cần thực hiện xét nghiệm đánh giá folat và vitamin B12 ở tất cả người bệnh tại thời điểm chẩn đoán thiếu máu. Tuy nhiên, chúng tôi nhấn mạnh tầm quan trọng của việc xét nghiệm folat và vitamin B12 khi người bệnh có thiếu máu hồng cầu to, suy giảm nhận thức, suy dinh dưỡng, đái tháo đường, tuổi cao hoặc tình trạng suy yếu.</p>
+
+<p>Số lượng hồng cầu lưới có thể hỗ trợ thêm trong việc phân biệt thiếu máu do giảm sinh hồng cầu với thiếu máu do tan máu hoặc mất máu đang diễn ra.</p>
+
+<p>Các thông số được đề xuất để đánh giá tình trạng sắt vẫn chủ yếu dựa vào nồng độ ferritin huyết thanh và TSAT, mặc dù những chỉ số này có các hạn chế trong việc đánh giá thiếu sắt ở người bệnh mắc bệnh thận mạn [22, 23]. Điều này khác với các hướng dẫn khác, vốn khuyến cáo sử dụng thêm những thông số như tỷ lệ hồng cầu nhược sắc hoặc hàm lượng Hb trong hồng cầu lưới [24]. Các định nghĩa về thiếu sắt về cơ bản tương tự hướng dẫn thiếu máu trước đây, nhưng có sự thay đổi về thuật ngữ: (i) TSAT thấp và ferritin thấp [\(\text{TSAT} < 20\%\) và \(\text{ferritin} < 100\text{ ng/mL}\) ở người bệnh thận mạn không phụ thuộc lọc máu (non-dialysis dependent CKD, NDD-CKD), hoặc \(\text{ferritin} < 200\text{ ng/mL}\) ở người bệnh thận mạn giai đoạn G5 đang điều trị bằng thẩm tách máu (CKD G5HD)], trước đây được gọi là “thiếu sắt tuyệt đối” (absolute iron deficiency), nay được đổi tên thành “thiếu sắt toàn thân” (systemic iron deficiency); (ii) TSAT thấp và ferritin cao (\(\text{ferritin} > 100\text{–}200\text{ ng/mL}\) với \(\text{TSAT} < 20\%\)), trước đây được gọi là “thiếu sắt chức năng” (functional iron deficiency), nay được đổi tên thành “tạo hồng cầu trong tình trạng hạn chế cung cấp sắt” (iron-restricted erythropoiesis) [1].</p>
+
+<p>Hướng dẫn KDIGO mới đề xuất rằng nếu các xét nghiệm ban đầu không xác định được nguyên nhân nền tảng, cần cân nhắc tiến hành đánh giá thêm. Các xét nghiệm có thể bao gồm phết máu ngoại vi, định lượng vitamin B12 và folat, men gan, haptoglobin, xét nghiệm tìm máu ẩn trong phân, hormone kích thích tuyến giáp (thyroid-stimulating hormone, TSH), lactate dehydrogenase, protein phản ứng C (C-reactive protein, CRP), cũng như điện di protein huyết thanh kết hợp cố định miễn dịch, định lượng chuỗi nhẹ tự do trong huyết thanh và xét nghiệm protein Bence-Jones trong nước tiểu.</p>
+
+<p>Chúng tôi đồng tình với khuyến cáo của hướng dẫn KDIGO mới rằng người bệnh mắc bệnh thận mạn có thiếu máu kèm thiếu sắt nặng cần được đánh giá để tìm nguyên nhân mất máu, đồng thời cân nhắc chuyển khám chuyên khoa Tiết niệu, Tiêu hóa hoặc Phụ khoa. Các bệnh lý ác tính cũng cần được xem xét trong chẩn đoán phân biệt đối với tình trạng thiếu máu không rõ nguyên nhân ở người bệnh mắc bệnh thận mạn.</p>
+
+
+<h2 id="su-dung-sat-trong-dieu-tri-thieu-sat-va-thieu-mau-o-nguoi-benh-than-man">Sử dụng sắt trong điều trị thiếu sắt và thiếu máu ở người bệnh CKD</h2>
+
+<p>Hướng dẫn KDIGO mới về quản lý thiếu máu trong bệnh thận mạn [1] đưa ra các hướng dẫn cụ thể hơn về đánh giá tình trạng thiếu sắt và điều trị bằng sắt ở người bệnh mắc bệnh thận mạn. Bảng 1 so sánh các khuyến cáo KDIGO mới [1] với các khuyến cáo được đưa ra năm 2012 [2] và tuyên bố quan điểm của European Renal Best Practice (ERBP) năm 2013 [25].</p>
+
+
+<div class="table-wrapper">
+  <table class="rec-table" style="font-size: 14px; width: 100%;">
+    <caption style="text-align: center; font-weight: bold; margin-bottom: 8px; font-size: 16px;">
+      Bảng 1. So sánh các khuyến cáo về điều trị bằng sắt trong bệnh thận mạn giữa KDIGO 2012, ERBP 2013 và KDIGO 2026
+    </caption>
+
+    <thead>
+      <tr>
+        <th scope="col" style="width: 22%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+          Nội dung
+        </th>
+        <th scope="col" style="width: 26%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+          KDIGO 2012 [2]
+        </th>
+        <th scope="col" style="width: 26%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+          ERBP 2013 [25]
+        </th>
+        <th scope="col" style="width: 26%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+          KDIGO 2026 [1]
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th scope="row" style="vertical-align: top;">
+          Tiêu chí bắt đầu điều trị (người bệnh thận mạn không phụ thuộc lọc máu, NDD-CKD)
+        </th>
+
+        <td style="vertical-align: top;">
+          <p>Thử điều trị bằng sắt đường tĩnh mạch (hoặc sắt đường uống trong \(1\text{–}3\) tháng) nếu:</p>
+          <ul>
+            <li>\(\text{TSAT} \le 30\%\) và \(\text{ferritin} \le 500\text{ ng/mL}\) khi mong muốn tăng \(\text{Hb}\) mà không sử dụng ESA (2C).</li>
+            <li>HOẶC mong muốn tăng nồng độ \(\text{Hb}\) hoặc giảm liều ESA ở người bệnh đang điều trị bằng ESA (2C).</li>
+          </ul>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Thử điều trị bằng sắt (ưu tiên đường uống nếu dung nạp được) nếu:</p>
+          <ul>
+            <li>Thiếu sắt tuyệt đối (\(\text{TSAT} < 20\%\) và \(\text{ferritin} < 100\text{ ng/mL}\)).</li>
+            <li>HOẶC mong muốn tăng \(\text{Hb}\), với \(\text{TSAT} < 25\%\) và \(\text{ferritin} < 200\text{ ng/mL}\), mà không cần bắt đầu điều trị bằng ESA.</li>
+            <li>HOẶC mong muốn tăng nồng độ \(\text{Hb}\) hoặc giảm liều ESA, đồng thời \(\text{TSAT} \le 30\%\) và \(\text{ferritin} \le 500\text{ ng/mL}\).</li>
+          </ul>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Đề xuất bắt đầu điều trị bằng sắt nếu:</p>
+          <ul>
+            <li>\(\text{Ferritin} < 100\text{ ng/mL}\) và \(\text{TSAT} < 40\%\).</li>
+            <li>HOẶC ferritin \(100\text{–}299\text{ ng/mL}\) và \(\text{TSAT} < 25\%\) (2D).</li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" style="vertical-align: top;">
+          Tiêu chí bắt đầu điều trị (người bệnh thẩm tách máu, HD)
+        </th>
+
+        <td style="vertical-align: top;">
+          <p>Thử điều trị bằng sắt đường tĩnh mạch trong \(1\text{–}3\) tháng nếu:</p>
+          <ul>
+            <li>\(\text{TSAT} \le 30\%\) và \(\text{ferritin} \le 500\text{ ng/mL}\) khi mong muốn tăng \(\text{Hb}\) mà không sử dụng ESA (2C).</li>
+            <li>HOẶC mong muốn tăng nồng độ \(\text{Hb}\) hoặc giảm liều ESA ở người bệnh đang điều trị bằng ESA (2C).</li>
+          </ul>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Thử điều trị bằng sắt đường tĩnh mạch nếu:</p>
+          <ul>
+            <li>Thiếu sắt tuyệt đối (\(\text{TSAT} < 20\%\) và \(\text{ferritin} < 100\text{ ng/mL}\)).</li>
+            <li>HOẶC mong muốn tăng \(\text{Hb}\), với \(\text{TSAT} < 25\%\) và \(\text{ferritin} < 300\text{ ng/mL}\), mà không cần bắt đầu điều trị bằng ESA.</li>
+            <li>HOẶC mong muốn tăng nồng độ \(\text{Hb}\) hoặc giảm liều ESA, đồng thời \(\text{TSAT} \le 30\%\) và \(\text{ferritin} \le 500\text{ ng/mL}\).</li>
+            <li>Ở người bệnh HD, có thể cân nhắc điều trị bằng sắt đường tĩnh mạch khi nồng độ ferritin huyết thanh cao hơn và người bệnh đáp ứng kém với ESA hoặc khi cân bằng lợi ích–nguy cơ không ủng hộ việc sử dụng ESA.</li>
+          </ul>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Sử dụng sắt đường tĩnh mạch nếu \(\text{TSAT} \le 30\%\) và \(\text{ferritin} \le 500\text{ ng/mL}\) (2D).</p>
+          <p>Đề xuất chiến lược bổ sung sắt đường tĩnh mạch chủ động ở người bệnh HD (Điểm thực hành 2.1).</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" style="vertical-align: top;">
+          Giới hạn trên về an toàn
+        </th>
+
+        <td style="vertical-align: top;">
+          <p>Tránh bổ sung sắt nếu ferritin liên tục \(> 500\text{ ng/mL}\) (Không phân mức độ khuyến cáo).</p>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Không chủ đích để \(\text{TSAT} > 30\%\) hoặc \(\text{ferritin} \ge 500\text{ ng/mL}\).</p>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Đề xuất tạm ngừng bổ sung sắt thường quy nếu \(\text{ferritin} \ge 700\text{ ng/mL}\) hoặc \(\text{TSAT} \ge 40\%\) (Điểm thực hành 2.2) (Không phân mức độ khuyến cáo).</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" style="vertical-align: top;">
+          Đường dùng
+        </th>
+
+        <td style="vertical-align: top;">
+          <ul>
+            <li>NDD-CKD: Lựa chọn đường dùng dựa trên mức độ thiếu sắt, khả năng tiếp cận đường tĩnh mạch, đáp ứng trước đây với sắt đường uống, khả năng dung nạp, mức độ tuân thủ điều trị của người bệnh và chi phí (Không phân mức độ khuyến cáo).</li>
+            <li>Người bệnh HD: Sử dụng sắt đường tĩnh mạch.</li>
+          </ul>
+        </td>
+
+        <td style="vertical-align: top;">
+          <ul>
+            <li>NDD-CKD: Ưu tiên sắt đường uống (nếu dung nạp được).</li>
+            <li>Người bệnh HD: Khuyến cáo sử dụng sắt đường tĩnh mạch.</li>
+          </ul>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Ở người bệnh thận mạn không điều trị bằng HD: Lựa chọn sắt đường uống hoặc đường tĩnh mạch dựa trên các yếu tố liên quan đến người bệnh, bao gồm mức độ thiếu máu và thiếu sắt, giai đoạn bệnh thận mạn, nguyện vọng của người bệnh, đáp ứng điều trị trước đây, tác dụng không mong muốn, khả năng tiếp cận đường tĩnh mạch, chi phí và khả năng sẵn có của các chế phẩm (Không phân mức độ khuyến cáo).</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" style="vertical-align: top;">
+          Theo dõi
+        </th>
+
+        <td style="vertical-align: top;">
+          <p>Đánh giá \(\text{TSAT}\) và ferritin mỗi \(3\) tháng trong quá trình điều trị bằng ESA (Không phân mức độ khuyến cáo).</p>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Cách tiếp cận tương tự, nhưng cần thận trọng khi nồng độ ferritin cao.</p>
+        </td>
+
+        <td style="vertical-align: top;">
+          <p>Nhấn mạnh việc đánh giá lại tình trạng sắt:</p>
+          <ul>
+            <li>Ở người bệnh NDD-CKD hoặc CKD G5PD đang điều trị bằng sắt: theo dõi mỗi \(3\) tháng.</li>
+            <li>Ở người bệnh HD: theo dõi mỗi \(1\text{–}3\) tháng.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+<tfoot>
+    <tr>
+        <td colspan="4" style="font-size: 13px; color: #4a4a4a; text-align: justify; padding: 12px 15px; background-color: #f9f9f9; border-left: 4px solid #c0c0c0; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; line-height: 1.5;">
+            <strong>PD</strong>: lọc màng bụng (peritoneal dialysis); <strong>2C/2D</strong>: phân mức độ khuyến cáo (2 = khuyến cáo yếu; C = chất lượng bằng chứng thấp; D = chất lượng bằng chứng rất thấp).
+        </td>
+    </tr>
+</tfoot>
+  </table>
+</div>
+
+
+<p>Ở người bệnh đang điều trị bằng thẩm tách máu (HD), chúng tôi đồng tình với các ngưỡng khởi trị bằng sắt khi \(\text{ferritin} \le 500\text{ ng/mL}\) và \(\text{TSAT} \le 30\%\) (Khuyến cáo 2.1), đồng thời ủng hộ khuyến cáo ưu tiên sử dụng sắt đường tĩnh mạch thay vì sắt đường uống (Khuyến cáo 2.2). Ngoài ra, dựa trên kết quả của thử nghiệm PIVOTAL [5], chúng tôi ủng hộ chiến lược bổ sung sắt đường tĩnh mạch chủ động thay vì chiến lược chỉ bổ sung sắt khi các chỉ số giảm dưới ngưỡng quy định (Điểm thực hành 2.1). Nghiên cứu PIVOTAL cho thấy việc bổ sung chủ động sắt sucrose đường tĩnh mạch liều cao (\(400\text{ mg}\) mỗi tháng, trừ khi nồng độ ferritin vượt quá \(700\text{ µg/L}\) hoặc \(\text{TSAT} \ge 40\%\)) vượt trội so với chiến lược bổ sung sắt khi các chỉ số giảm dưới ngưỡng quy định (\(0\text{–}400\text{ mg}\) mỗi tháng, được chỉ định khi \(\text{ferritin} < 200\text{ ng/mL}\) hoặc \(\text{TSAT} < 20\%\)) về các tiêu chí đánh giá lâm sàng quan trọng (hard clinical endpoints), khả năng giảm liều ESA hoặc giảm nhu cầu truyền khối hồng cầu, đồng thời có tính an toàn [5]. Tuy nhiên, thử nghiệm PIVOTAL chỉ bao gồm những người bệnh mới bắt đầu điều trị bằng thẩm tách máu (thời gian điều trị \(< 1\) năm); do đó, không thể ngoại suy các kết quả này cho những người bệnh đã điều trị bằng thẩm tách máu trên \(1\) năm hoặc những người có tình trạng thiếu sắt chức năng và viêm, làm hạn chế khả năng khái quát hóa kết quả cho toàn bộ quần thể người bệnh HD. Ngoài ra, các kết quả này không áp dụng cho những người bệnh chưa từng được điều trị bằng ESA, vì việc sử dụng ESA là một tiêu chí bắt buộc để được đưa vào nghiên cứu. Hơn nữa, nghiên cứu đã loại trừ những người bệnh có thời gian sống còn kỳ vọng ngắn, bệnh lý ác tính đang hoạt động, bệnh gan mạn tính, suy tim nặng (độ IV theo phân loại của Hiệp hội Tim mạch New York, NYHA) hoặc đang mang thai. Cuối cùng, mặc dù các kết quả này chứng minh tính ưu việt của chiến lược bổ sung sắt chủ động so với chiến lược bổ sung sắt khi các chỉ số xét nghiệm đạt ngưỡng thiếu sắt, chúng vẫn chưa trả lời được câu hỏi đâu là chiến lược bù sắt tối ưu cho quần thể người bệnh này. Đồng thời, cần thận trọng khi ngoại suy các kết quả này sang những quần thể người bệnh thận mạn khác, như sẽ được thảo luận ở phần sau.</p>
+
+<p>Khuyến cáo 2.3 đề xuất bắt đầu điều trị bằng sắt ở người bệnh thận mạn không phụ thuộc lọc máu (NDD-CKD) hoặc người bệnh lọc màng bụng khi \(\text{ferritin} < 100\text{ ng/mL}\) và \(\text{TSAT} < 40\%\), hoặc khi ferritin trong khoảng \(100\text{–}299\text{ ng/mL}\) kèm \(\text{TSAT} < 25\%\). Chúng tôi ủng hộ các ngưỡng này vì chúng phù hợp với chiến lược bổ sung sắt chủ động hơn và thể hiện sự thay đổi rõ rệt so với những đề xuất mang tính thận trọng hơn trong tuyên bố quan điểm của ERBP năm 2013 dành cho quần thể châu Âu [25]. Trên thực tế, thử nghiệm FIND-CKD cho thấy việc sử dụng sắt đường tĩnh mạch với mục tiêu ferritin huyết thanh \(400\text{–}600\text{ ng/mL}\), trừ khi \(\text{TSAT} \ge 40\%\), có hiệu quả vượt trội so với sắt đường uống trong việc làm tăng nồng độ Hb và ferritin huyết thanh, đồng thời làm giảm nhu cầu sử dụng các liệu pháp điều trị thiếu máu khác, bao gồm ESA [3]. Tuy nhiên, chúng tôi muốn nêu ra một số quan ngại liên quan đến ngưỡng giới hạn trên của TSAT là \(40\%\), được lựa chọn khi đi kèm với \(\text{ferritin} < 100\text{ ng/mL}\). Mức TSAT tối ưu để đạt được đáp ứng Hb cao nhất với ESA dường như vào khoảng \(30\%\) [26], điều này đặt ra nghi vấn về sự cần thiết phải bắt đầu điều trị bằng sắt ở những người bệnh có ferritin chỉ thấp hơn \(100\text{ ng/mL}\) một chút và TSAT, chẳng hạn, ở mức \(35\%\). Mặt khác, các dữ liệu quan sát gần đây cho thấy TSAT trong khoảng \(30\%\text{–}40\%\) có thể liên quan đến kết cục lâm sàng tốt hơn so với mức khoảng \(30\%\). Chẳng hạn, Nakai và cộng sự [27] nhận thấy rằng những người bệnh HD tại Nhật Bản có TSAT trong khoảng \(30\%\text{–}40\%\) gặp ít biến cố tim mạch hơn có ý nghĩa thống kê so với những người có TSAT trong khoảng \(20\%\text{–}30\%\), đặc biệt ở nhóm đang sử dụng ESA tác dụng kéo dài. Tương tự, Guedes và cộng sự [28] chứng minh rằng tình trạng thiếu sắt, được xác định thông qua TSAT, có liên quan đến nguy cơ tử vong do mọi nguyên nhân và các biến cố tim mạch bất lợi nghiêm trọng (major adverse cardiovascular events, MACE) cao hơn ở người bệnh NDD-CKD, bất kể tình trạng thiếu máu [28]. Phân tích bằng đường cong spline cho thấy nguy cơ thấp nhất xuất hiện tại mức \(\text{TSAT} = 40\%\). Những phát hiện này ủng hộ việc bắt đầu điều trị bằng sắt ở những người bệnh có \(\text{TSAT} < 40\%\), đặc biệt khi ferritin huyết thanh thấp. Một thử nghiệm ngẫu nhiên có đối chứng (randomized controlled trial, RCT) quy mô nhỏ, thời gian theo dõi ngắn, trên \(46\) người bệnh HD được phân ngẫu nhiên vào nhóm sử dụng sắt đường tĩnh mạch với mục tiêu TSAT \(20\%\text{–}30\%\) hoặc \(30\%\text{–}50\%\), cho thấy liều ESA giảm \(30\%\) ở nhóm có mục tiêu TSAT cao hơn [29]. Tuy nhiên, sự khác biệt về TSAT trung bình giữa hai nhóm là nhỏ, với các giá trị \(27.2\%\text{–}24.5\%\) ở nhóm chứng so với \(31.1\%\text{–}34.9\%\) ở nhóm can thiệp. Do TSAT phản ánh lượng sắt sẵn có để sử dụng, chỉ số này chịu ảnh hưởng tức thời của việc bổ sung sắt gần thời điểm xét nghiệm nhiều hơn so với ferritin. Về khía cạnh này, phần lớn các nghiên cứu quan sát không báo cáo thời điểm đo TSAT trong mối liên quan với việc bổ sung sắt. Chẳng hạn, thử nghiệm FIND-CKD [3] đã ngừng sử dụng sắt đường uống một tuần trước khi đưa người bệnh vào nghiên cứu, nhưng không cung cấp thông tin chi tiết về việc sử dụng sắt trước đó của quần thể được tuyển chọn. Theo quan điểm của nhóm công tác ERBP, những kết quả này chưa đủ để ủng hộ mục tiêu \(\text{TSAT} > 40\%\), vốn có thể khiến người bệnh đối mặt với nguy cơ tích lũy sắt theo thời gian [29].</p>
+
+<p>Mặc dù các mối liên quan được xác định trong những nghiên cứu quan sát chưa đủ để suy luận về lợi ích lâm sàng hoặc thiết lập các ngưỡng điều trị, những phát hiện này có giá trị trong việc hình thành giả thuyết nghiên cứu và cần được kiểm chứng bằng các thử nghiệm ngẫu nhiên có đối chứng nhằm xác định mức TSAT tối ưu, cả về khả năng làm tăng Hb lẫn cải thiện các kết cục lâm sàng quan trọng. Tuy nhiên, những phát hiện này vẫn có cơ sở khoa học hợp lý. Thật vậy, tình trạng thiếu sắt có liên quan đến sự gia tăng số lượng và hoạt tính tiểu cầu [30, 31], cũng như tăng nồng độ transferrin huyết thanh [32]. Các nghiên cứu gần đây cho thấy sự gia tăng transferrin huyết thanh có liên quan đến kiểu hình tăng nguy cơ huyết khối thông qua việc tăng cường hoạt động của trục yếu tố XIIa/thrombin và ức chế antithrombin 3 [32, 33]. Tình trạng thiếu oxy cũng có liên quan đến tăng nồng độ transferrin huyết thanh và trạng thái tăng nguy cơ huyết khối [34]. Tuy nhiên, ý nghĩa lâm sàng của những phát hiện này gần đây đã bị đặt nghi vấn trong một quần thể không mắc bệnh thận mạn [35]. Cuối cùng, tình trạng thiếu sắt làm tăng nồng độ yếu tố tăng trưởng nguyên bào sợi 23 (fibroblast growth factor 23, FGF-23), vốn có liên quan đến các kết cục bất lợi hơn ở người bệnh NDD-CKD và người được ghép thận (kidney transplant recipients, KTR) [36, 37].</p>
+
+<p>Liên quan đến khuyến cáo chỉ định điều trị bằng sắt khi ferritin huyết thanh trong khoảng \(100\text{–}299\text{ ng/mL}\) và \(\text{TSAT} < 25\%\), các tác giả thừa nhận rằng khuyến cáo này dựa trên các tiêu chí tuyển chọn người bệnh trong những thử nghiệm ngẫu nhiên có đối chứng ở các đối tượng đang điều trị bằng ESA hoặc HIF-PHI. Trong các thử nghiệm này, ngưỡng TSAT được sử dụng cao hơn so với ngưỡng ở những người bệnh chưa từng điều trị bằng ESA (\(> 20\%\)). Tuy nhiên, các tác giả vẫn áp dụng ngưỡng này nhằm đơn giản hóa các khuyến cáo, đồng thời thừa nhận rằng hiện chưa có đủ bằng chứng để hỗ trợ cho khuyến cáo đó.</p>
+
+<p>Một điểm khác mà chúng tôi muốn lưu ý là tổng quan hệ thống làm cơ sở cho các khuyến cáo này bao gồm cả người bệnh đang điều trị lọc máu và người bệnh NDD-CKD, trong đó một tỷ lệ đáng kể các thử nghiệm ngẫu nhiên có đối chứng thuộc phân nhóm NDD-CKD được thực hiện trên quần thể người bệnh suy tim. Các nghiên cứu này thường đánh giá kết cục tim mạch thay vì đáp ứng Hb hoặc những tiêu chí đánh giá khác có liên quan đến bệnh thận mạn (ví dụ: suy giảm eGFR, tiến triển đến bệnh thận giai đoạn cuối), như được chỉ ra trong một phân tích gộp gần đây chưa được đưa vào hướng dẫn [38]. Phần lớn các kết cục có lợi của sắt đường tĩnh mạch được ghi nhận ở người bệnh suy tim có phân suất tống máu giảm (heart failure with reduced ejection fraction, HFrEF). Ngược lại, nhóm suy tim có phân suất tống máu bảo tồn (heart failure with preserved ejection fraction, HFpEF), vốn điển hình hơn ở người bệnh mắc bệnh thận mạn, lại có mức độ đại diện rất thấp trong cơ sở bằng chứng hiện có. Thử nghiệm FAIR-HFpEF, được thiết kế nhằm đánh giá tác dụng của sắt đường tĩnh mạch ở quần thể người bệnh này có kèm thiếu sắt, đã phải kết thúc sớm do quá trình tuyển chọn người bệnh diễn ra chậm [39].</p>
+
+<p>Nhìn chung, các ngưỡng khởi trị bằng sắt được đề xuất trong Khuyến cáo 2.3 khác biệt đáng kể so với những ngưỡng mang tính thận trọng hơn được đưa ra trong tuyên bố quan điểm của ERBP năm 2013 dành cho quần thể châu Âu [25]. Trên cơ sở các bằng chứng hiện có, chúng tôi đồng tình với các ngưỡng được cập nhật của KDIGO, đồng thời ghi nhận những hạn chế đã thảo luận ở trên và nhận thấy rằng vẫn cần có thêm bằng chứng trên quần thể người bệnh thận mạn về vấn đề này.</p>
+
+
+<p>Khuyến cáo 2.4, cho phép lựa chọn giữa sắt đường uống và sắt đường tĩnh mạch dựa trên nguyện vọng của người bệnh NDD-CKD, là phù hợp. Tuy nhiên, nếu điều trị thử bằng sắt đường uống không làm tăng nồng độ Hb sau \(1\text{–}3\) tháng hoặc người bệnh không dung nạp thuốc, cần chuyển sang sử dụng sắt đường tĩnh mạch, như được khuyến cáo trong Điểm thực hành 2.7.</p>
+
+<p>Điểm thực hành 2.2 đề xuất tạm ngừng bổ sung sắt ở người bệnh thận mạn khi \(\text{ferritin} \ge 700\text{ ng/mL}\) hoặc \(\text{TSAT} \ge 40\%\), mà không phân biệt giữa các quần thể người bệnh thận mạn. Các ngưỡng này chủ yếu dựa trên đề cương nghiên cứu của thử nghiệm PIVOTAL [5]. Xét đến các kết quả của PIVOTAL và những thử nghiệm khác trên người bệnh HD, các ngưỡng này có vẻ hợp lý đối với quần thể này. Tuy nhiên, vẫn còn nghi vấn về việc liệu có nên áp dụng rộng rãi cách tiếp cận này cho người bệnh NDD-CKD khi chưa có thêm bằng chứng hỗ trợ hay không. Ngoài ra, thử nghiệm PIVOTAL so sánh chiến lược bổ sung sắt chủ động với chiến lược bổ sung sắt khi các chỉ số giảm dưới ngưỡng quy định, thay vì so sánh các mức ferritin hoặc TSAT mục tiêu cụ thể. Do đó, những kết quả này không hàm ý rằng việc duy trì ferritin trong khoảng \(200\text{–}700\text{ ng/mL}\) (ví dụ: \(400\text{ ng/mL}\)) kém hiệu quả hơn chiến lược bổ sung sắt chủ động. Ở người bệnh NDD-CKD, nghiên cứu có liên quan với quy mô lớn nhất là thử nghiệm FIND-CKD [3], trong đó cho phép ferritin đạt tối đa \(600\text{ ng/mL}\) và khuyến cáo tạm ngừng bổ sung sắt khi \(\text{TSAT} \ge 40\%\). Thử nghiệm ngẫu nhiên có đối chứng này tập trung vào các chỉ dấu trung gian, với thời gian theo dõi tương đối ngắn để có thể chứng minh những lợi ích dài hạn. Vì vậy, các thử nghiệm ngẫu nhiên có đối chứng trong tương lai cần ưu tiên đánh giá những kết cục như mệt mỏi, tránh được nhu cầu truyền máu, nhập viện và các biến cố tim mạch. Xét từ góc độ phương pháp luận, việc đặt mục tiêu ferritin huyết thanh trong khoảng \(400\text{–}600\text{ ng/mL}\) có vẻ hợp lý ở quần thể người bệnh NDD-CKD, mặc dù vẫn tồn tại những hạn chế nêu trên.</p>
+
+<p>Chúng tôi cũng ủng hộ Điểm thực hành 2.3, trong đó nêu rõ rằng ở người bệnh thận mạn được điều trị bằng sắt đường uống, việc lựa chọn giữa các chế phẩm và lịch dùng thuốc khác nhau cần dựa trên chi phí, nguyện vọng của từng người bệnh, khả năng dung nạp và hiệu quả điều trị.</p>
+
+<p>Các chế phẩm sắt đường uống thế hệ mới có thể mang lại hiệu quả và/hoặc khả năng dung nạp tốt hơn. Tuy nhiên, hiện có rất ít thử nghiệm ngẫu nhiên có đối chứng so sánh trực tiếp giữa các chế phẩm, đồng thời cỡ mẫu và thời gian theo dõi còn hạn chế, khiến việc đưa ra kết luận chắc chắn trở nên khó khăn. Phức hợp phối trí sắt(III) citrat (ferric citrate coordination complex) được chỉ định để điều trị đồng thời tình trạng tăng phospho huyết thanh và thiếu sắt ở người bệnh thận mạn trưởng thành tại Liên minh châu Âu. Trong một phân tích gộp gần đây gồm sáu thử nghiệm ngẫu nhiên có đối chứng, sắt(III) citrat làm giảm nồng độ phospho huyết thanh và tăng Hb, ferritin huyết thanh và TSAT, mặc dù tỷ lệ xảy ra các biến cố bất lợi (adverse events, AE) trên đường tiêu hóa cao hơn so với giả dược [40].</p>
+
+<p>Ferric maltol là một chế phẩm sắt đường uống khác đã được Cơ quan Dược phẩm châu Âu (European Medicines Agency, EMA) phê duyệt, có đặc điểm là sinh khả dụng cao, nhờ đó có thể cho phép bù sắt hiệu quả với liều dùng hằng ngày thấp hơn. Trong một thử nghiệm giai đoạn 3 trên người bệnh NDD-CKD có thiếu máu thiếu sắt, ferric maltol cải thiện đáng kể nồng độ Hb so với giả dược và có liên quan đến sự gia tăng ferritin huyết thanh và TSAT, đồng thời duy trì khả năng dung nạp thuận lợi. Các biến cố bất lợi chủ yếu liên quan đến đường tiêu hóa ở cả hai nhóm, nhưng chỉ khiến một số ít người bệnh phải ngừng điều trị [41].</p>
+
+<p>Sắt sucrosomial (sucrosomial iron, chưa được EMA phê duyệt) đã được đánh giá ở người bệnh NDD-CKD có thiếu máu thiếu sắt, thông qua so sánh với sắt(III) gluconat đường tĩnh mạch. Tỷ lệ người bệnh đạt mức tăng \(\text{Hb} \ge 0{,}6\text{ g/dL}\) tại bất kỳ thời điểm nào từ ban đầu đến khi kết thúc điều trị (\(3\) tháng) cao hơn có ý nghĩa thống kê ở nhóm sử dụng sắt(III) gluconat đường tĩnh mạch so với nhóm sử dụng sắt sucrosomial đường uống. Mức tăng ferritin huyết thanh trung bình cũng cao hơn có ý nghĩa thống kê ở nhóm sử dụng sắt(III) gluconat đường tĩnh mạch. Hơn nữa, sau khi ngừng điều trị, nồng độ Hb ở nhóm sử dụng sắt sucrosomial đường uống trở về giá trị trước điều trị trong vòng \(1\) tháng, trong khi vẫn duy trì ổn định ở nhóm sử dụng sắt(III) gluconat đường tĩnh mạch. Mặc dù tỷ lệ xảy ra các biến cố bất lợi thấp hơn khi sử dụng sắt sucrosomial, hiệu quả bổ sung dự trữ sắt và khả năng duy trì ổn định Hb sau khi ngừng thuốc lại kém hơn [42]. Nhìn chung, cần có thêm các nghiên cứu để xác định liệu các chế phẩm sắt đường uống thế hệ mới có vượt trội hơn các chế phẩm sắt truyền thống về hiệu quả và tính an toàn hay không.</p>
+
+<p>Chúng tôi cũng ủng hộ Điểm thực hành 2.4, trong đó nêu rõ rằng ở người bệnh thận mạn được điều trị bằng sắt đường tĩnh mạch, việc lựa chọn giữa các chế phẩm khác nhau cần dựa trên chi phí, nguyện vọng của từng người bệnh và lịch dùng thuốc được khuyến cáo. Tuy nhiên, khuyến cáo này có thể còn quá chung chung. Các chế phẩm sắt đường tĩnh mạch thế hệ mới [như ferric carboxymaltose (FCM), ferric derisomaltose và ferumoxytol] có ưu điểm là cho phép sử dụng liều sắt cao trong thời gian ngắn, với hồ sơ an toàn rất tốt và lượng sắt dễ phân ly (labile iron) được giải phóng ở mức tối thiểu. Ferumoxytol hiện không được lưu hành thương mại tại Liên minh châu Âu. Đối với Điểm thực hành 2.4, chúng tôi muốn nhấn mạnh rằng việc lựa chọn chế phẩm sắt đường tĩnh mạch không nên chỉ dựa trên chi phí, nguyện vọng của người bệnh hoặc lịch dùng thuốc, mà còn phải cân nhắc những tình huống lâm sàng cụ thể [6]. Ví dụ, không khuyến cáo sử dụng FCM ở người bệnh mới được ghép thận, vì những người bệnh này thường còn tình trạng cường cận giáp kéo dài và có nguy cơ cao xuất hiện hạ phosphat máu nghiêm trọng do tình trạng dư thừa FGF-23 sau khi sử dụng FCM [43]. Trong những trường hợp này, một chế phẩm sắt đường tĩnh mạch khác được biết là ít gây hạ phosphat máu hơn có thể là lựa chọn phù hợp hơn [44]. Nếu vẫn sử dụng FCM, cần theo dõi chặt chẽ nồng độ phosphat máu.</p>
+
+
+<p>Ngoài ra, ở người bệnh thận mạn không phụ thuộc lọc máu (NDD-CKD), người bệnh lọc màng bụng (PD) hoặc người được ghép thận (KTR) tại châu Âu có thiếu máu và thiếu sắt, nếu có chỉ định điều trị bằng sắt đường tĩnh mạch, nên khuyến khích áp dụng chiến lược sử dụng liều cao với tần suất thấp. Chiến lược này không chỉ tính đến chi phí trực tiếp của các chế phẩm sắt đường tĩnh mạch mà còn xem xét các chi phí gián tiếp (ví dụ: chi phí điều dưỡng và hành chính), số lần đến bệnh viện và nhu cầu di chuyển, tầm quan trọng của việc bảo tồn các vị trí tiếp cận mạch máu, cũng như chất lượng cuộc sống tổng thể của người bệnh [24].</p>
+
+<p>Sắt là yếu tố thiết yếu cho sự nhân lên của nhiều tác nhân gây bệnh, bao gồm vi khuẩn và virus, đồng thời có thể ảnh hưởng đến chức năng miễn dịch và đáp ứng của cơ thể vật chủ theo những cơ chế có khả năng làm tăng độc lực của tác nhân gây nhiễm trùng. Chúng tôi hoàn toàn đồng tình với Điểm thực hành 2.8, trong đó khuyến cáo tạm ngừng điều trị bằng sắt khi người bệnh có nhiễm trùng toàn thân. Thật vậy, mặc dù các thử nghiệm sử dụng sắt đường tĩnh mạch (FIND-CKD [3], PIVOTAL [5]) và một tổng quan hệ thống không ghi nhận sự gia tăng nguy cơ nhiễm trùng [45], nhưng đề cương của các nghiên cứu này đều quy định việc tạm ngừng điều trị bằng sắt đường tĩnh mạch trong thời gian có nhiễm trùng. Do đó, chúng tôi ủng hộ điểm thực hành này như một biện pháp thận trọng.</p>
+
+<p>Chúng tôi cũng đồng tình với Điểm thực hành 2.11, trong đó khuyến cáo cân nhắc điều trị bằng sắt ở những người bệnh có tình trạng thiếu sắt trầm trọng (\(\text{ferritin} < 30\text{ µg/mL}\) và \(\text{TSAT} < 20\%\)), ngay cả khi không có thiếu máu. Mặc dù hai thử nghiệm ngẫu nhiên có đối chứng quy mô nhỏ không cho thấy lợi ích của sắt đường tĩnh mạch trong việc cải thiện khả năng gắng sức ở người bệnh NDD-CKD có thiếu sắt nhưng không thiếu máu [46, 47], một tổng quan hệ thống gần đây cho thấy điều trị bằng sắt có thể làm giảm nguy cơ nhập viện do suy tim và tử vong do nguyên nhân tim mạch, với tác dụng nhất quán ở cả quần thể bệnh thận mạn phụ thuộc lọc máu (dialysis-dependent CKD, DD-CKD) và NDD-CKD [38]. Tuy nhiên, cần thận trọng khi diễn giải những phát hiện này, vì phần lớn lợi ích được ghi nhận từ những người bệnh NDD-CKD tham gia các thử nghiệm về suy tim, thay vì từ các đoàn hệ nghiên cứu chuyên biệt về bệnh thận mạn. Mặc dù một số nghiên cứu ghi nhận sự giảm tỷ lệ nhồi máu cơ tim, suy thận và tử vong do mọi nguyên nhân, những ước tính hiệu quả này thường thiếu độ chính xác, các nghiên cứu không đủ lực thống kê hoặc kết quả chủ yếu được chi phối bởi một nghiên cứu đơn lẻ. Hơn nữa, chưa có bằng chứng cho thấy tác dụng nhất quán đối với sự suy giảm eGFR hoặc tình trạng protein niệu [3, 4]. Cần có thêm các nghiên cứu để chứng minh rằng việc điều chỉnh tình trạng thiếu sắt theo các ngưỡng được đề xuất trong Khuyến cáo 2.3 cũng mang lại lợi ích độc lập với tình trạng thiếu máu. Trong khi chờ đợi những bằng chứng này, chúng tôi đồng tình với Điểm thực hành 2.11 rằng tình trạng thiếu sắt toàn thân trầm trọng cần được điều trị.</p>
+
+<p>Hội chứng chân không yên (restless legs syndrome, RLS) phổ biến hơn ở người bệnh thận mạn, đặc biệt là người bệnh đang điều trị bằng lọc máu, so với dân số chung. Thiếu sắt được cho là có vai trò trong sự xuất hiện của biến chứng này [48]. Ba thử nghiệm ngẫu nhiên có đối chứng với cỡ mẫu nhỏ và thời gian theo dõi ngắn ghi nhận sự cải thiện các triệu chứng lâm sàng ở người bệnh HD có thiếu sắt được điều trị bằng sắt đường tĩnh mạch so với giả dược [49–51]. Gần đây hơn, một phân tích gộp cho thấy ferric carboxymaltose (FCM) đường tĩnh mạch cải thiện đáng kể các triệu chứng của RLS, đặc biệt ở những người bệnh có thiếu sắt [52]. Do đó, chúng tôi đề xuất rằng ở người bệnh thận mạn mắc RLS, cần đánh giá các chỉ số tình trạng sắt và điều chỉnh tình trạng thiếu sắt bằng sắt đường tĩnh mạch trong một số trường hợp được lựa chọn, ngay cả khi không có thiếu máu, mặc dù bằng chứng về kết quả dài hạn vẫn còn hạn chế.</p>
+
+<p>Ở người bệnh suy tim có phân suất tống máu giảm (HFrEF) đồng mắc bệnh thận mạn, tình trạng thiếu sắt cũng cần được điều chỉnh bằng sắt đường tĩnh mạch theo các tiêu chuẩn xác định thiếu sắt của chuyên ngành tim mạch, do liệu pháp này mang lại những tác dụng có lợi đối với các kết cục lâm sàng ở nhóm người bệnh này, không phụ thuộc vào sự hiện diện của thiếu máu [53].</p>
+
+
+<h2 id="su-dung-esa-hif-phi-va-cac-thuoc-khac-trong-dieu-tri-thieu-mau-o-benh-than-man">Sử dụng ESA, HIF-PHI và các thuốc khác trong điều trị thiếu máu ở bệnh thận mạn</h2>
+
+<h3 id="khoi-tri-va-dieu-tri-duy-tri-bang-esa">Khởi trị và điều trị duy trì bằng ESA</h3>
+
+<p>Chúng tôi hoàn toàn đồng tình với Điểm thực hành 3.1.2 của hướng dẫn KDIGO mới, trong đó đề xuất giải quyết tất cả các nguyên nhân gây thiếu máu có thể điều chỉnh được trước khi bắt đầu điều trị bằng ESA hoặc HIF-PHI [1]. Mặc dù khuyến cáo này có vẻ hiển nhiên, thực hành lâm sàng cho thấy các bác sĩ vẫn thường áp dụng cách tiếp cận mang tính máy móc trong điều trị thiếu máu, theo đó bắt đầu điều trị bằng ESA hoặc HIF-PHI mà không đánh giá người bệnh một cách toàn diện. Việc điều trị hoặc điều chỉnh các nguyên nhân gây thiếu máu khác có thể giúp người bệnh không cần sử dụng những liệu pháp tốn kém như ESA và HIF-PHI, đồng thời tránh được các nguy cơ liên quan đến những liệu pháp này. Về khía cạnh này, việc điều chỉnh tình trạng thiếu sắt và giải quyết các nguyên nhân gây viêm đặc biệt quan trọng, vì những người bệnh này có nhiều khả năng đáp ứng kém với điều trị bằng ESA hoặc HIF-PHI. Hơn nữa, tình trạng thiếu sắt trong quá trình điều trị bằng ESA hoặc HIF-PHI có thể làm tăng nguy cơ tim mạch ở người bệnh thận mạn (xem phần trên).</p>
+
+<p>Cả ESA và HIF-PHI đều làm tăng nhu cầu sắt thông qua kích thích quá trình tạo hồng cầu. Tuy nhiên, trong các thử nghiệm lâm sàng, các nhóm điều trị thường được bổ sung lượng sắt tương đương hoặc thậm chí thấp hơn so với nhóm chứng. Điều này tạo ra khả năng tình trạng thiếu sắt, dù đã hiện diện tại thời điểm bắt đầu điều trị hay xuất hiện trong quá trình điều trị, có thể góp phần làm gia tăng nguy cơ tim mạch khi sử dụng các liệu pháp này ở những người bệnh dễ bị tổn thương [54].</p>
+
+<p>Chúng tôi cũng hoàn toàn đồng tình với Điểm thực hành 3.1.1, trong đó đề xuất rằng quyết định sử dụng ESA hoặc HIF-PHI để làm tăng Hb cần cân nhắc các triệu chứng của từng người bệnh, nguy cơ gây hại tiềm tàng của việc truyền khối hồng cầu và nguy cơ xảy ra các biến cố bất lợi (ví dụ: đột quỵ, biến cố tim mạch, ung thư) [1]. Quyết định điều trị cần được đưa ra trên cơ sở trao đổi và thống nhất với người bệnh. Điểm thực hành này nhấn mạnh rằng không nên mặc nhiên sử dụng ESA và HIF-PHI để điều trị thiếu máu.</p>
+
+<p>Điểm thực hành 3.4.3.2 đề xuất theo dõi Hb mỗi \(2\text{–}4\) tuần trong quá trình điều trị bằng ESA hoặc HIF-PHI và điều chỉnh liều phù hợp nhằm tránh tình trạng Hb tăng nhanh \(> 1{,}0\text{ g/dL}\) trong khoảng thời gian đó. Mục đích của khuyến cáo này là phát hiện tình trạng Hb tăng nhanh và ngăn ngừa việc vượt quá mức Hb mục tiêu. Theo quan điểm của chúng tôi, việc theo dõi Hb mỗi \(2\) tuần là không cần thiết trong phần lớn các trường hợp thực hành lâm sàng thường quy, đặc biệt ở người bệnh NDD-CKD, đồng thời cần lưu ý rằng chính điểm thực hành này cũng khuyến cáo tránh điều chỉnh liều quá sớm. Hơn nữa, mức tăng Hb \(> 1\text{ g/dL}\) nhưng \(< 2\text{ g/dL}\) sau \(4\) tuần được xem là phù hợp. Do đó, chúng tôi cho rằng khuyến cáo tránh để Hb tăng \(> 2\text{ g/dL}\) trong vòng \(4\) tuần sẽ chính xác và phù hợp hơn.</p>
+
+<p>Cả ESA và HIF-PHI đều là những thuốc có hiệu quả trong việc làm tăng nồng độ Hb, như đã được chứng minh qua các thử nghiệm ngẫu nhiên có đối chứng giai đoạn 3 cho thấy HIF-PHI không kém hiệu quả hơn ESA [55–61] và vượt trội so với giả dược [62–64]. Đặc biệt, ở những người sử dụng roxadustat, nồng độ Hb tăng nhanh hơn trong giai đoạn đầu, có thể do mức liều được lựa chọn theo đề cương nghiên cứu. Điều này có thể bị diễn giải sai thành một ưu điểm của roxadustat, theo đó người bệnh đạt được mức Hb mục tiêu nhanh hơn so với những người được điều trị bằng ESA. Tuy nhiên, như đã đề cập trước đó, nhìn chung cần tránh tình trạng Hb tăng nhanh (\(> 2\text{ g/dL/tháng}\)) khi điều trị bằng ESA hoặc HIF-PHI, vì đây có thể là một nguyên nhân làm tăng nguy cơ huyết khối hoặc co giật ở một số phân nhóm người bệnh (theo Bản tóm tắt đặc tính sản phẩm thuốc [Summary of Product Characteristics, SmPC] của các thuốc này).</p>
+
+<p>Theo yêu cầu quản lý của một số cơ quan y tế, bao gồm Cục Quản lý Thực phẩm và Dược phẩm Hoa Kỳ (Food and Drug Administration, FDA) và Cơ quan Dược phẩm châu Âu (European Medicines Agency, EMA), ba thuốc thuộc nhóm HIF-PHI đã trải qua các chương trình phát triển lâm sàng giai đoạn 3 quy mô lớn trên phạm vi toàn cầu. Phần lớn các thử nghiệm đều đáp ứng các tiêu chí về tính không kém hơn đối với các kết cục tim mạch quan trọng và các thông số an toàn do FDA và EMA quy định, ngoại trừ vadadustat ở người bệnh NDD-CKD [60]. Bảng 2 tóm tắt tình trạng phê duyệt và lưu hành thương mại của các thuốc HIF-PHI theo FDA và EMA. Đáng chú ý, thử nghiệm này ghi nhận sự khác biệt giữa các khu vực địa lý, với số lượng biến cố tim mạch bất lợi nghiêm trọng (MACE) và số ca tử vong do nguyên nhân ngoài tim mạch, chủ yếu do suy thận, cao hơn ở nhóm vadadustat so với nhóm darbepoetin alfa tại các khu vực ngoài Hoa Kỳ và châu Âu [65]. Ban đầu, FDA đã từ chối phê duyệt vadadustat do những lo ngại về tính an toàn, nhưng sau đó đã phê duyệt thuốc này cho người bệnh đang điều trị bằng lọc máu vào năm 2024. Vadadustat cũng đã được EMA phê duyệt cho người bệnh đang điều trị bằng lọc máu và hiện được lưu hành thương mại tại một số quốc gia châu Âu.</p>
+
+
+<div class="table-wrapper">
+    <table style="font-size: 14px; width: 100%;">
+        <caption style="text-align: center; font-weight: bold; margin-bottom: 8px; font-size: 16px;">
+            Bảng 2. Tóm tắt tình trạng phê duyệt và lưu hành thương mại của các thuốc HIF-PHI tại châu Âu và Hoa Kỳ (cập nhật đến tháng 8 năm 2025)
+        </caption>
+
+        <thead>
+            <tr>
+                <th scope="col" style="width: 13%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Thuốc HIF-PHI
+                </th>
+                <th scope="col" style="width: 20%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    FDA
+                </th>
+                <th scope="col" style="width: 20%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    EMA
+                </th>
+                <th scope="col" style="width: 23%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Tình trạng lưu hành thương mại
+                </th>
+                <th scope="col" style="width: 24%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Các vấn đề chính về tính an toàn
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Daprodustat
+                </th>
+
+                <td style="vertical-align: top;">
+                    <p><strong>ĐÃ PHÊ DUYỆT</strong></p>
+                    <p>Chỉ dành cho người bệnh thận mạn phụ thuộc lọc máu (DD-CKD); có cảnh báo đóng khung (boxed warning) về nguy cơ huyết khối.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p><strong>ĐÃ RÚT HỒ SƠ ĐĂNG KÝ</strong></p>
+                    <p>EMA đã khuyến nghị phê duyệt cho người bệnh DD-CKD; tuy nhiên, nhà sản xuất đã rút hồ sơ đăng ký vì lý do thương mại.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p>Châu Âu: Không lưu hành (nhà sản xuất đã rút hồ sơ đăng ký).</p>
+                    <p>Hoa Kỳ: Được lưu hành cho người bệnh DD-CKD.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p>Nguy cơ tim mạch và ung thư có thể cao hơn ở người bệnh NDD-CKD theo phân tích trong thời gian đang điều trị (on-treatment analysis) (với thời gian theo dõi khác nhau giữa hai nhóm điều trị).</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Roxadustat
+                </th>
+
+                <td style="vertical-align: top;">
+                    <p><strong>BỊ TỪ CHỐI PHÊ DUYỆT</strong></p>
+                    <p>Tăng nguy cơ tử vong, huyết khối và nhiễm trùng huyết; các vấn đề về phương pháp luận được phát hiện qua phân tích độc lập của FDA.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p><strong>ĐÃ PHÊ DUYỆT</strong></p>
+                    <p>Dành cho cả người bệnh NDD-CKD và DD-CKD.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p>Châu Âu: Được lưu hành cho cả người bệnh NDD-CKD và DD-CKD.</p>
+                    <p>Hoa Kỳ: Không lưu hành.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p>Tử vong; huyết khối; huyết khối tại đường vào mạch máu; nhiễm trùng huyết; những lo ngại về phương pháp luận liên quan đến dữ liệu thử nghiệm; co giật.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Vadadustat
+                </th>
+
+                <td style="vertical-align: top;">
+                    <p><strong>ĐÃ PHÊ DUYỆT</strong></p>
+                    <p>Chỉ dành cho người bệnh DD-CKD.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p><strong>ĐÃ PHÊ DUYỆT</strong></p>
+                    <p>Chỉ dành cho người bệnh DD-CKD.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p>Châu Âu: Được lưu hành tại một số quốc gia châu Âu cho người bệnh đang điều trị bằng lọc máu.</p>
+                    <p>Hoa Kỳ: Được lưu hành cho người bệnh DD-CKD.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p>Các biến cố huyết khối tắc mạch; độc tính trên gan; tình trạng tăng huyết áp nặng hơn; co giật (nguy cơ rất thấp).</p>
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="5" style="font-size: 13px; color: #4a4a4a; text-align: justify; padding: 12px 15px; background-color: #f9f9f9; border-left: 4px solid #c0c0c0; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; line-height: 1.5;">
+                    Dữ liệu được kiểm chứng lần cuối vào ngày 31 tháng 8 năm 2025.
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+<p>Một phân tích được xác định trước trong đề cương nghiên cứu, thực hiện trên dữ liệu trong thời gian điều trị (prespecified on-treatment analysis) ở người bệnh NDD-CKD, cũng làm dấy lên lo ngại về nguy cơ tương đối xảy ra các biến cố bất lợi liên quan đến ung thư cao hơn ở nhóm sử dụng daprodustat so với nhóm sử dụng darbepoetin [59]. Những phát hiện này có thể đã bị ảnh hưởng bởi sai lệch trong ước tính nguy cơ do việc ghi nhận thiếu các biến cố ở nhóm darbepoetin alfa [66]. Hơn nữa, phân tích MACE trong thời gian điều trị cho thấy tỷ lệ mắc MACE ở nhóm daprodustat cao hơn so với nhóm darbepoetin alfa, có thể chịu ảnh hưởng bởi sự khác biệt về khoảng cách giữa các liều dùng và tỷ lệ ngừng thuốc lên đến \(20\%\) trước khi hoàn thành \(1\) năm theo dõi ở cả hai nhóm. Khi xem xét sự khác biệt giữa các khu vực địa lý, tại Tây Âu, nguy cơ tương đối của MACE luôn \(< 1{,}0\) trong cả các thử nghiệm trên người bệnh DD-CKD và NDD-CKD [67]. Một phân tích thứ cấp của các thử nghiệm ASCEND (Anaemia Studies in CKD: Erythropoiesis via a Novel PHI Daprodustat) cũng cho thấy nguy cơ nhập viện do suy tim cao hơn ở những người bệnh được phân ngẫu nhiên vào nhóm daprodustat, mặc dù sự khác biệt không có ý nghĩa thống kê [68]. Sự khác biệt so với darbepoetin alfa rõ rệt hơn ở người bệnh NDD-CKD và những người có tiền sử suy tim. Daprodustat chưa được FDA và EMA phê duyệt sử dụng trong thực hành lâm sàng cho người bệnh NDD-CKD. Thuốc được FDA phê duyệt vào tháng 2 năm 2023, nhưng chỉ dành cho người bệnh DD-CKD, kèm theo cảnh báo đóng khung về nguy cơ huyết khối. Mặc dù EMA đã khuyến nghị phê duyệt daprodustat cho người bệnh DD-CKD, nhà sản xuất đã rút hồ sơ đăng ký tại châu Âu vào tháng 7 năm 2023.</p>
+
+<p>FDA cũng bày tỏ những lo ngại về roxadustat do nguy cơ tử vong, huyết khối và nhiễm trùng huyết gia tăng, dẫn đến việc từ chối phê duyệt thuốc này. Hơn nữa, FDA đã chỉ ra một số vấn đề về phương pháp luận sau khi tiến hành phân tích độc lập dữ liệu từ các thử nghiệm roxadustat được đệ trình [69]. Ngược lại, roxadustat đã được EMA phê duyệt sử dụng trong thực hành lâm sàng cho cả người bệnh NDD-CKD và DD-CKD. EMA kết luận rằng nguy cơ tim mạch và tử vong dường như tương đương với ESA, dựa trên dữ liệu từ các “nghiên cứu điều chỉnh Hb” (Hb correction studies) ở người bệnh NDD-CKD và DD-CKD. Đồng thời, EMA cho rằng việc đánh giá các tập hợp dữ liệu khác (bao gồm các nghiên cứu so sánh với giả dược và các nghiên cứu trên người bệnh lọc máu có tình trạng ổn định) gặp phải những vấn đề về phương pháp luận và thiết kế nghiên cứu, khiến việc diễn giải kết quả trở nên phức tạp.</p>
+
+<p>Những dữ liệu này cho thấy một bức tranh phức tạp về tính an toàn tim mạch của HIF-PHI, với các kết quả dao động từ khả năng mang lại tác dụng bảo vệ, không có tác động rõ rệt, cho đến khả năng gây hại, ngay cả đối với cùng một thuốc, mà chưa có lời giải thích rõ ràng. Hơn nữa, trong những năm gần đây, một số phân tích gộp cho thấy dữ liệu về tính an toàn tổng thể của HIF-PHI tương tự ESA [70–74], trong khi những phân tích khác lại ghi nhận các kết quả trái ngược [75].</p>
+
+<p>Mặc dù chúng tôi thừa nhận cơ sở lập luận của Khuyến cáo 3.1.1 trong hướng dẫn KDIGO, theo đó ưu tiên ESA là liệu pháp đầu tay trong điều trị thiếu máu [1], chúng tôi cho rằng cần có thêm những cân nhắc phù hợp với bối cảnh châu Âu. Hướng dẫn KDIGO xếp khuyến cáo này ở mức 2D, phản ánh những hạn chế đã được thừa nhận, bao gồm khoảng tin cậy rộng đối với các kết cục MACE trong các phân tích gộp, việc loại trừ một số nhóm người bệnh khỏi các thử nghiệm làm giảm khả năng áp dụng kết quả vào thực hành lâm sàng thực tế, cùng những lo ngại về nguy cơ sai lệch, tính không nhất quán và tính gián tiếp của bằng chứng. Chúng tôi cũng hoàn toàn thừa nhận rằng ESA có lợi thế nhờ kinh nghiệm sử dụng trong thực hành lâm sàng qua nhiều thập kỷ và hồ sơ an toàn đã được xác lập rõ ràng hơn, những ưu điểm mà HIF-PHI hiện vẫn chưa có được. Những lo ngại được nêu ra đối với một số thử nghiệm HIF-PHI, bao gồm các tín hiệu cảnh báo về tính an toàn và những hạn chế về phương pháp luận, đều là các vấn đề cần được xem xét một cách nghiêm túc. Tuy nhiên, xét đến việc EMA đã phê duyệt một số thuốc HIF-PHI dựa trên đánh giá của cơ quan quản lý này, đồng thời cân nhắc tính không kém hơn đã được chứng minh về đáp ứng Hb và tính an toàn trong các thử nghiệm ngẫu nhiên có đối chứng giai đoạn 3 của những thuốc này, chúng tôi đề xuất rằng trong bối cảnh châu Âu, cả ESA và các thuốc HIF-PHI được EMA phê duyệt đều có thể được cân nhắc là những lựa chọn điều trị thiếu máu ở người bệnh thận mạn. Trong đó, ESA tiếp tục giữ vai trò đã được xác lập là liệu pháp chuẩn tham chiếu, còn HIF-PHI là một lựa chọn thay thế khi phù hợp về mặt lâm sàng.</p>
+
+<p>Ngoài ra, cần cân nhắc thận trọng khả năng xảy ra tương tác thuốc–thuốc khi sử dụng HIF-PHI, vì người bệnh thận mạn thường phải dùng đồng thời nhiều loại thuốc, trong khi ESA, với bản chất là các thuốc sinh học, có ít khả năng gây tương tác dược động học hơn. Việc xem xét HIF-PHI như một lựa chọn thay thế không áp dụng cho một số nhóm người bệnh đặc biệt (xem phần dưới về tính an toàn của HIF-PHI trong các quần thể đặc biệt), mà ở những đối tượng này, HIF-PHI cần được sử dụng hết sức thận trọng hoặc tránh sử dụng hoàn toàn [1, 76].</p>
+
+<p>Bảng 3 tóm tắt những đề xuất khác nhau về việc sử dụng HIF-PHI trong bệnh thận mạn theo hướng dẫn KDIGO 2026 [1] và bài bình luận này. Đáng chú ý, phần lớn những lo ngại này trên thực tế cũng áp dụng tương tự đối với việc sử dụng ESA [77]. Để bảo đảm tính cân bằng, hướng dẫn KDIGO lẽ ra cũng nên đưa vào một bảng trình bày những lo ngại liên quan đến ESA [1].</p>
+
+<tr>
+    <th colspan="3" scope="colgroup" style="text-align: left; vertical-align: middle; font-weight: bold; font-style: italic; color: #0d6efd;">
+        Thuốc kích thích tạo hồng cầu (ESA)
+    </th>
+</tr>
+
+<tr>
+    <th colspan="3" scope="colgroup" style="text-align: left; vertical-align: middle; font-weight: bold; font-style: italic; color: #0d6efd;">
+        Thuốc ức chế prolyl hydroxylase của yếu tố cảm ứng thiếu oxy (HIF-PHI)
+    </th>
+</tr>
+
+
+<div class="table-wrapper">
+    <table style="font-size: 14px; width: 100%;">
+        <caption style="text-align: center; font-weight: bold; margin-bottom: 8px; font-size: 16px;">
+            Bảng 3. So sánh các khuyến cáo của KDIGO và đề xuất của ERBP về sử dụng ESA và HIF-PHI trong điều trị thiếu máu ở bệnh thận mạn
+        </caption>
+
+        <thead>
+            <tr>
+                <th scope="col" style="width: 20%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Phân loại
+                </th>
+                <th scope="col" style="width: 40%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Hướng dẫn KDIGO
+                </th>
+                <th scope="col" style="width: 40%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Đề xuất của ERBP
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th colspan="3" scope="colgroup" style="text-align: left; vertical-align: middle; font-weight: bold; font-style: italic; color: #0d6efd;">
+                    Thuốc kích thích tạo hồng cầu (ESA)
+                </th>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Chống chỉ định/tránh sử dụng
+                </th>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Tránh sử dụng hoặc hạ mức Hb mục tiêu ở người bệnh có nguy cơ cao (mới xảy ra biến cố tim mạch/huyết khối tắc mạch, ung thư đang hoạt động với mục tiêu điều trị khỏi bệnh).</li>
+                        <li>Tạm ngừng điều trị trong thời gian nhập viện do đột quỵ cấp, huyết khối đường vào mạch máu hoặc các biến cố huyết khối tắc mạch; cá thể hóa quyết định bắt đầu điều trị trở lại.</li>
+                        <li>Bất sản đơn thuần dòng hồng cầu (pure red cell aplasia, PRCA) sau khi sử dụng bất kỳ ESA nào.</li>
+                    </ul>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Nguy cơ đột quỵ và bệnh lý ác tính không phải là chống chỉ định tuyệt đối; cần cân nhắc lợi ích–nguy cơ.</li>
+                        <li>Tạm ngừng điều trị trong thời gian nhập viện do đột quỵ cấp, huyết khối đường vào mạch máu hoặc các biến cố huyết khối tắc mạch; cá thể hóa quyết định bắt đầu điều trị trở lại.</li>
+                        <li>Tránh sử dụng ở người bệnh có ung thư đang hoạt động với mục tiêu điều trị khỏi bệnh.</li>
+                        <li>Tăng huyết áp chưa được kiểm soát.</li>
+                        <li>PRCA sau khi sử dụng bất kỳ ESA nào.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Sử dụng thận trọng
+                </th>
+
+                <td style="vertical-align: top;">
+                    <p>Ra quyết định chung với người bệnh mắc ung thư hoặc có tiền sử đột quỵ.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Hạ mức Hb mục tiêu ở người bệnh có nguy cơ cao.</li>
+                        <li>Đường vào mạch máu có nguy cơ cao xảy ra biến chứng huyết khối.</li>
+                        <li>Co giật.</li>
+                        <li>Phụ nữ mang thai.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Cân nhắc sử dụng
+                </th>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Ở người bệnh CKD-G5D: khi \(\text{Hb } 9\text{–}10\text{ g/dL}\).</li>
+                        <li>Ở người bệnh NDD-CKD: cá thể hóa quyết định điều trị khi \(\text{Hb} < 10\text{ g/dL}\).</li>
+                        <li>Duy trì \(\text{Hb} < 11{,}5\text{ g/dL}\).</li>
+                        <li>Sử dụng liều thấp nhất có hiệu quả.</li>
+                    </ul>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>NDD-CKD: Không để Hb giảm xuống dưới \(10\text{ g/dL}\); cân nhắc khởi trị sớm hơn (\(\text{Hb} < 11\text{ g/dL}\)) ở người bệnh có triệu chứng của bệnh tim thiếu máu cục bộ (IHD) hoặc có nguy cơ thấp. Duy trì Hb khoảng \(10\text{–}12\text{ g/dL}\).</li>
+                        <li>CKD-G5D: Không để Hb giảm xuống dưới \(10\text{ g/dL}\). Duy trì Hb khoảng \(10\text{–}12\text{ g/dL}\).</li>
+                        <li>Người bệnh có mức độ tuân thủ điều trị đường uống thấp hoặc phải sử dụng nhiều thuốc viên.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="3" scope="colgroup" style="text-align: left; vertical-align: middle; font-weight: bold; font-style: italic; color: #0d6efd;">
+                    Thuốc ức chế prolyl hydroxylase của yếu tố cảm ứng thiếu oxy (HIF-PHI)
+                </th>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Chống chỉ định/tránh sử dụng
+                </th>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Ung thư đang hoạt động hoặc có tiền sử ung thư nhưng chưa đạt tình trạng lui bệnh hoàn toàn trong ít nhất \(2\text{–}5\) năm (dựa trên các tiêu chí loại trừ của thử nghiệm).</li>
+                        <li>Bệnh thận đa nang.</li>
+                        <li>Bệnh võng mạc tăng sinh.</li>
+                        <li>Tăng áp động mạch phổi.</li>
+                        <li>Phụ nữ mang thai.</li>
+                    </ul>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Người bệnh có biến cố tim mạch hoặc huyết khối trong vòng \(3\) tháng trước đó.</li>
+                        <li>Tiền sử bệnh lý ác tính trong vòng \(5\) năm gần đây.</li>
+                        <li>Bệnh thận đa nang.</li>
+                        <li>Bệnh võng mạc đái tháo đường tăng sinh chưa được điều trị, thoái hóa hoàng điểm và tắc tĩnh mạch võng mạc.</li>
+                        <li>Tăng áp động mạch phổi vô căn.</li>
+                        <li>Phụ nữ mang thai.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Sử dụng thận trọng
+                </th>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Tiền sử biến cố tim mạch (ví dụ: đột quỵ, nhồi máu cơ tim).</li>
+                        <li>Tiền sử biến cố huyết khối tắc mạch (ví dụ: huyết khối tĩnh mạch sâu, thuyên tắc phổi).</li>
+                        <li>Tiền sử huyết khối đường vào mạch máu.</li>
+                        <li>Suy giảm chức năng gan.</li>
+                        <li>Co giật, viêm da tróc vảy, suy giáp, nhiễm khuẩn/nhiễm trùng huyết (đối với roxadustat).</li>
+                    </ul>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Đường vào mạch máu có nguy cơ cao xảy ra biến chứng huyết khối.</li>
+                        <li>Các bệnh lý võng mạc.</li>
+                        <li>Bệnh tự miễn.</li>
+                        <li>Tiền sử bệnh lý ác tính đã được điều trị khỏi hoặc không tái phát trong ít nhất \(5\) năm.</li>
+                        <li>Người được ghép thận.</li>
+                        <li>Suy giáp (đối với roxadustat).</li>
+                        <li>Suy giảm chức năng gan.</li>
+                        <li>Co giật.</li>
+                        <li>Tương tác thuốc–thuốc.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Chưa đủ dữ liệu
+                </th>
+
+                <td style="vertical-align: top;">
+                    <p>Cần đánh giá và thực hiện các nghiên cứu chuyên biệt đối với:</p>
+                    <ul>
+                        <li>Thiếu máu sau ghép thận.</li>
+                        <li>Trẻ em.</li>
+                    </ul>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <p>Cần đánh giá và thực hiện các nghiên cứu chuyên biệt đối với:</p>
+                    <ul>
+                        <li>Trẻ em.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Cân nhắc sử dụng
+                </th>
+
+                <td style="vertical-align: top;">
+                    <p>Không nêu cụ thể.</p>
+                </td>
+
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Người bệnh ưu tiên điều trị đường uống (khả năng tiếp cận, tính thuận tiện, dễ sử dụng, không có yêu cầu về điều kiện bảo quản).</li>
+                        <li>Gặp khó khăn trong việc bắt đầu hoặc tiếp nhận điều trị bằng ESA (sợ kim tiêm, không thể tự sử dụng ESA).</li>
+                        <li>Gặp khó khăn trong việc điều trị bằng sắt hoặc khi mong muốn tăng lượng sắt khả dụng.</li>
+                        <li>Đáp ứng kém hoặc không dung nạp ESA.</li>
+                        <li>Tình trạng viêm mạn tính (\(\text{CRP} \ge 3\text{ mg/L}\)).</li>
+                        <li>Thẩm tách máu tại nhà.</li>
+                        <li>Lọc màng bụng.</li>
+                        <li>Quá mẫn với sắt đường tĩnh mạch hoặc không có sẵn các chế phẩm sắt đường tĩnh mạch.</li>
+                        <li>Sau khi hồi phục khỏi PRCA liên quan đến ESA.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<p>Hướng dẫn KDIGO mới về thiếu máu tiếp tục duy trì các ngưỡng Hb để bắt đầu điều trị bằng ESA đã được thiết lập từ năm 2012 [2]. Khuyến cáo 3.2.1 quy định bắt đầu điều trị bằng ESA khi \(\text{Hb} \le 9{,}0\text{–}10{,}0\text{ g/dL}\) (\(90\text{–}100\text{ g/L}\)) ở người bệnh đang điều trị bằng thẩm tách máu (HD) hoặc lọc màng bụng (PD) (2D) [1]. Khuyến cáo 3.2.2 nhấn mạnh rằng đối với người bệnh thận mạn không phụ thuộc lọc máu (NDD-CKD), bao gồm cả người được ghép thận (KTR) và trẻ em, quyết định bắt đầu điều trị bằng ESA cần được cá thể hóa dựa trên các triệu chứng liên quan đến thiếu máu, lợi ích tiềm năng của việc đạt được nồng độ Hb cao hơn và các nguy cơ liên quan đến truyền khối hồng cầu hoặc điều trị bằng ESA (2D) [1]. Hướng dẫn cũng tiếp tục duy trì mức Hb mục tiêu như trước đây trong giai đoạn điều trị duy trì bằng ESA, khuyến cáo giữ \(\text{Hb} < 11{,}5\text{ g/dL}\) (1D) [1]. Về vấn đề này, chúng tôi đồng tình với những nhận định và đề xuất của ERBP năm 2013 về thời điểm bắt đầu điều trị bằng ESA cũng như mức Hb mục tiêu trong giai đoạn điều trị duy trì [25]. Như đã nêu trong tuyên bố quan điểm của ERBP năm 2013 [25], bằng chứng từ thử nghiệm TREAT [78] và các nghiên cứu khác (bao gồm một phân tích gộp cho thấy chỉ số khối lượng thất trái cao hơn ở những người bệnh có \(\text{Hb} < 10\text{ g/dL}\) và giảm khi Hb tăng lên nhờ điều trị bằng ESA [79]) gợi ý rằng việc điều chỉnh thiếu máu kịp thời, đặc biệt ở các giai đoạn bệnh thận mạn tiến triển hơn, có thể mang lại lợi ích về tim mạch và thận. Vì vậy, chúng tôi cho rằng không nên thường xuyên để Hb giảm xuống dưới \(10\text{ g/dL}\) ở cả người bệnh NDD-CKD và DD-CKD. Đối với điều trị duy trì, ERBP đề xuất sử dụng ESA để duy trì Hb trong khoảng \(10\text{–}12\text{ g/dL}\), đồng thời cá thể hóa mức Hb mục tiêu trong khoảng này dựa trên các bệnh đồng mắc của người bệnh [25]. Đáng chú ý, người được ghép thận có thể hưởng lợi từ việc duy trì Hb ở mức cao hơn nhằm bảo tồn chức năng thận ghép mà không làm phát sinh những lo ngại về tính an toàn [80–84]. Tuy nhiên, chúng tôi đồng tình với quan điểm của KDIGO rằng quyết định có bắt đầu điều trị bằng ESA hay không và thời điểm bắt đầu điều trị cần được cá thể hóa theo đặc điểm và nguyện vọng điều trị của từng người bệnh. Do các thử nghiệm lâm sàng giai đoạn 3 của HIF-PHI được thiết kế với mục tiêu Hb theo các mức thông thường, tương đương với những mức được sử dụng khi điều trị bằng ESA, chúng tôi ủng hộ nhận định rằng hiện chưa có đủ bằng chứng để đề xuất các ngưỡng khởi trị và mức Hb mục tiêu khác biệt cho liệu pháp HIF-PHI [1].</p>
+
+<p>Xét đến nguy cơ huyết khối liên quan đến cả ESA và HIF-PHI, chúng tôi cũng đồng tình với đề xuất của hướng dẫn về việc tạm ngừng điều trị bằng ESA trong thời gian người bệnh nhập viện do đột quỵ cấp, huyết khối đường vào mạch máu hoặc các biến cố huyết khối tắc mạch (Điểm thực hành 3.4.3.4) [1]. Theo quan điểm của chúng tôi, cách tiếp cận thận trọng này cũng nên được áp dụng tương tự đối với điều trị bằng HIF-PHI, do các thuốc này có đặc điểm nguy cơ huyết khối tương đương.</p>
+
+<p>Trong thập kỷ qua, chưa có thêm bằng chứng mới đáng kể nào liên quan đến tần suất sử dụng tối ưu của các thuốc ESA khác nhau. Hướng dẫn KDIGO 2026 đề xuất cá thể hóa tần suất sử dụng thuốc dựa trên nguyện vọng của người bệnh, thực hành tại cơ sở điều trị và loại ESA được sử dụng [1]. Tuy nhiên, khoảng tần suất sử dụng được đề xuất cho các ESA tác dụng ngắn vẫn khá rộng so với methyl polyethylene glycol-epoetin beta (thuốc ESA có thời gian bán thải dài nhất). Thật vậy, tần suất sử dụng được khuyến cáo đối với methoxy polyethylene glycol-epoetin beta (mỗi \(2\text{ tuần}\) khi bắt đầu điều trị ở người bệnh lọc máu) tương tự tần suất sử dụng liều khởi đầu của epoetin alfa ở người bệnh NDD-CKD, mặc dù thời gian bán thải của hai thuốc này khác biệt đáng kể. Hơn nữa, hướng dẫn không cung cấp thông tin về tần suất sử dụng thuốc trong giai đoạn điều trị duy trì. Theo một số nghiên cứu, người bệnh NDD-CKD đang trong giai đoạn điều trị duy trì và có tình trạng ổn định có thể được sử dụng ESA bằng đường tiêm dưới da (subcutaneous, SC) với khoảng cách giữa các lần dùng thuốc kéo dài đến \(4\text{ tuần}\). Tuy nhiên, đặc biệt đối với epoetin alfa và darbepoetin alfa, cách tiếp cận này phù hợp hơn với những người bệnh có nhu cầu liều thấp. Ở những người cần liều cao hơn, việc kéo dài khoảng cách giữa các lần dùng thuốc một cách không cần thiết đòi hỏi phải sử dụng liều ESA cao hơn (hiện tượng phải tăng liều, dose penalty) để đạt được cùng một mức tăng Hb, đồng thời khiến người bệnh phải tiếp nhận các liều ESA đỉnh cao hơn. Mặc dù chúng tôi thừa nhận rằng tần suất sử dụng thuốc cần cân nhắc đến sự thuận tiện của người bệnh và giai đoạn bệnh thận mạn (đang lọc máu hoặc chưa lọc máu), chúng tôi nhấn mạnh rằng quyết định về liều dùng cũng cần tính đến giai đoạn điều trị (khởi trị hoặc duy trì), nhu cầu liều của từng người bệnh (không khuyến cáo kéo dài khoảng cách giữa các lần dùng thuốc ở những người bệnh đáp ứng kém), cũng như đặc điểm dược động học và dược lực học của từng thuốc cùng với lịch dùng thuốc tối ưu tương ứng.</p>
+
+<p>Mặc dù hướng dẫn KDIGO 2026 cho phép linh hoạt trong việc lựa chọn đường dùng ESA, hướng dẫn không xem xét sự khác biệt về liều dùng giữa ESA tiêm dưới da và ESA đường tĩnh mạch, ngay cả khi sử dụng liều cao [1]. Khác với các ESA tác dụng ngắn, những thuốc tác dụng kéo dài (darbepoetin alfa hoặc methoxy polyethylene glycol-epoetin beta) cho thấy hiệu quả tương đương ở các liều tương đương, bất kể đường dùng [85]. Theo quan điểm của chúng tôi, điều này cần được cân nhắc khi người bệnh cần sử dụng ESA liều cao, đặc biệt ở người bệnh HD được điều trị bằng đường tĩnh mạch.</p>
+
+<p>Bảng 4 tóm tắt các hướng dẫn về tần suất sử dụng thuốc trong hướng dẫn KDIGO năm 2012 [2] và năm 2026 [1].</p>
+
+
+<div class="table-wrapper">
+    <table style="font-size: 14px; width: 100%;">
+        <caption style="text-align: center; font-weight: bold; margin-bottom: 8px; font-size: 16px;">
+            Bảng 4. So sánh các hướng dẫn KDIGO năm 2012 và 2026 về tần suất sử dụng ESA
+        </caption>
+
+        <thead>
+            <tr>
+                <th scope="col" style="width: 25%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Nội dung
+                </th>
+                <th scope="col" style="width: 37.5%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Hướng dẫn KDIGO 2012 [2]
+                </th>
+                <th scope="col" style="width: 37.5%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Hướng dẫn KDIGO 2026 [1]
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Tần suất sử dụng ESA khi khởi trị
+                </th>
+                <td style="vertical-align: top;">
+                    <p>Không quy định chi tiết; đường dùng và tần suất sử dụng thuốc cần được cá thể hóa (tiêm dưới da [SC] hoặc đường tĩnh mạch [IV]) dựa trên các yếu tố liên quan đến người bệnh.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Cá thể hóa tần suất sử dụng thuốc dựa trên nguyện vọng của người bệnh và loại ESA. Ở người bệnh NDD-CKD: khoảng cách giữa các lần dùng thuốc có thể lên đến \(2\) tuần đối với epoetin alfa và lên đến \(1\) tháng đối với darbepoetin alfa và methoxy polyethylene glycol-epoetin beta. Ở người bệnh DD-CKD: khoảng cách giữa các lần dùng thuốc có thể lên đến \(2\) tuần đối với darbepoetin alfa và dùng mỗi \(2\) tuần đối với methoxy polyethylene glycol-epoetin beta (Bảng 7).</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Tần suất sử dụng ESA trong điều trị duy trì
+                </th>
+                <td style="vertical-align: top;">
+                    <p>Điều chỉnh liều và tần suất sử dụng thuốc nhằm đạt được và duy trì Hb trong khoảng mục tiêu. Việc điều chỉnh dựa trên đáp ứng lâm sàng và xu hướng thay đổi Hb.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không nêu cụ thể liệu có thể kéo dài khoảng cách giữa các lần dùng thuốc đối với từng loại ESA hay không.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Sử dụng ESA tác dụng kéo dài
+                </th>
+                <td style="vertical-align: top;">
+                    <p>Có đề cập đến các ESA tác dụng kéo dài nhưng không quy định tần suất sử dụng cụ thể.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Methoxy polyethylene glycol-epoetin beta có thể được sử dụng với tần suất thấp hơn so với các thuốc ESA khác có thời gian bán thải ngắn hơn.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Tính linh hoạt trong việc sử dụng thuốc
+                </th>
+                <td style="vertical-align: top;">
+                    <p>Nhấn mạnh việc cá thể hóa điều trị, đặc biệt về đường dùng (SC so với IV) và tần suất sử dụng thuốc.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Chủ yếu dựa trên nguyện vọng của người bệnh và thực hành tại cơ sở điều trị. Đối với ESA tác dụng ngắn, epoetin cần được sử dụng với liều cao hơn khi dùng đường tĩnh mạch so với tiêm dưới da, từ đó làm tăng chi phí điều trị. Không có sự khác biệt trong khuyến cáo về liều dùng darbepoetin alfa giữa đường tĩnh mạch và đường tiêm dưới da.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Những cân nhắc ở người bệnh NDD-CKD so với DD-CKD
+                </th>
+                <td style="vertical-align: top;">
+                    <p>Không có sự phân biệt rõ ràng về khuyến cáo tần suất sử dụng thuốc giữa người bệnh NDD-CKD và DD-CKD.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Có thể sử dụng thuốc với tần suất thấp hơn, đặc biệt ở người bệnh NDD-CKD, nhằm tạo thuận lợi cho việc quản lý và điều trị ngoại trú.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    Chiến lược tổng thể
+                </th>
+                <td style="vertical-align: top;">
+                    <p>Liều và tần suất sử dụng ESA cần được điều chỉnh dựa trên đáp ứng Hb và tình trạng lâm sàng.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Nguyện vọng của người bệnh và đặc điểm thực hành tại cơ sở điều trị thường quyết định việc lựa chọn loại ESA và tần suất sử dụng thuốc.</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h3 id="khoi-tri-va-dieu-tri-duy-tri-bang-hif-phi">Khởi trị và điều trị duy trì bằng HIF-PHI</h3>
+
+<p>Việc xác định liều khởi trị và liều duy trì của HIF-PHI tuân theo cùng một cách tiếp cận lâm sàng như đối với ESA và trên thực tế, gần như không đòi hỏi thay đổi đáng kể các quy trình lâm sàng hiện hành trong quản lý thiếu máu ở người bệnh thận mạn. Tương tự ESA, hướng dẫn KDIGO 2026 khuyến cáo cần giải quyết tất cả các nguyên nhân gây thiếu máu có thể điều chỉnh được trước khi bắt đầu điều trị bằng HIF-PHI (Điểm thực hành 3.1.2). Các chỉ số tình trạng sắt mục tiêu cần đạt được trước khi khởi trị bằng HIF-PHI cũng tương tự những chỉ số được yêu cầu trước khi bắt đầu điều trị bằng ESA (Khuyến cáo 2.1 và Khuyến cáo 2.3).</p>
+
+<p>Nhiều nghiên cứu về HIF-PHI đã ghi nhận sự giảm nồng độ ferritin và hepcidin trong quá trình điều trị, cho thấy tình trạng suy giảm dự trữ sắt [86]. Mặc dù về mặt lý thuyết, HIF-PHI làm tăng hấp thu sắt và lượng sắt khả dụng, dữ liệu từ các thử nghiệm lâm sàng và phân tích gộp cho thấy người bệnh sử dụng HIF-PHI có nhu cầu điều trị bằng sắt đường tĩnh mạch thấp hơn so với những người sử dụng ESA [87]. Tuy nhiên, sự khác biệt này không có ý nghĩa đáng kể về mặt lâm sàng, đặc biệt khi xét đến việc các phác đồ bổ sung sắt chưa được chuẩn hóa và chưa được áp dụng tương đương giữa nhóm chứng và nhóm điều trị can thiệp. Vì lý do này, chúng tôi tiếp tục khẳng định đề xuất trong bài bình luận của ERBP về HIF-PHI [76] rằng chỉ nên bắt đầu điều trị bằng các thuốc này khi dự trữ sắt đã được bổ sung đầy đủ.</p>
+
+<p>Hướng dẫn KDIGO đề xuất sử dụng cùng các ngưỡng Hb để khởi trị và điều trị duy trì bằng HIF-PHI như những ngưỡng được khuyến cáo hoặc đề xuất đối với liệu pháp ESA (Điểm thực hành 3.5.2) [1]. Không có gì đáng ngạc nhiên khi, tương tự ESA, HIF-PHI cần được bắt đầu với liều khởi trị theo khuyến cáo (Điểm thực hành 3.5.3). Đồng thời, cũng như bất kỳ loại thuốc nào được sử dụng trong thực hành lâm sàng, bao gồm cả ESA, cần kê đơn ở mức liều thấp nhất đủ để đạt được lợi ích lâm sàng mong muốn và liều được kê đơn cuối cùng không được vượt quá liều tối đa được khuyến cáo (Điểm thực hành 3.5.4 và 3.5.5). Điều quan trọng là không nên sử dụng phối hợp ESA và HIF-PHI, kể cả trong trường hợp người bệnh đáp ứng kém với ESA, do hiện chưa có bất kỳ dữ liệu nào về tính an toàn và hiệu quả của sự phối hợp này (Điểm thực hành 3.5.1).</p>
+
+
+<h3 id="theo-doi-dieu-tri-bang-hif-phi">Theo dõi điều trị bằng HIF-PHI</h3>
+
+<p>Việc theo dõi người bệnh sử dụng HIF-PHI không khác biệt so với các khuyến cáo theo thông tin nhãn thuốc về theo dõi người bệnh điều trị bằng ESA. Điều này một lần nữa cho thấy việc sử dụng HIF-PHI hầu như không đòi hỏi thay đổi các quy trình lâm sàng hiện hành. Tương tự, tần suất theo dõi các chỉ số tình trạng sắt cũng không khác biệt so với người bệnh được điều trị bằng ESA và sắt (Điểm thực hành 2.5). Cũng như đối với ESA, cần tạm ngừng điều trị bằng HIF-PHI ở những người bệnh xuất hiện các biến cố tim mạch (ví dụ: đột quỵ, nhồi máu cơ tim), biến cố huyết khối tắc mạch (ví dụ: huyết khối tĩnh mạch sâu, thuyên tắc phổi), huyết khối đường vào mạch máu hoặc mới được chẩn đoán ung thư (Điểm thực hành 3.6.3). Đồng thời, hoàn toàn nhất quán với các khuyến cáo dành cho ESA, cần ngừng điều trị bằng HIF-PHI sau \(3\text{–}4\) tháng nếu không đạt được đáp ứng tạo hồng cầu mong muốn (Điểm thực hành 3.6.3).</p>
+
+<p>Mặc dù trên thực tế, việc theo dõi người bệnh điều trị bằng HIF-PHI không khác biệt so với người bệnh sử dụng ESA, vẫn có một yêu cầu theo dõi bổ sung đối với những người được điều trị bằng roxadustat. Các trường hợp suy giáp trung ương đã được ghi nhận trong những đoàn hệ nghiên cứu tại Nhật Bản và Trung Quốc. Cơ chế được cho là do roxadustat gắn vào thụ thể hormone tuyến giáp β (thyroid hormone receptor β, THRβ), làm tăng cường cơ chế điều hòa ngược âm tính của trục hạ đồi–tuyến yên–tuyến giáp [88, 89]. Vì vậy, khuyến cáo định lượng hormone kích thích tuyến giáp (thyroid-stimulating hormone, TSH), T3 tự do (FT3) và T4 tự do (FT4) sau \(4\) tuần kể từ khi bắt đầu điều trị.</p>
+
+<h3 id="dap-ung-kem-voi-esa">Đáp ứng kém với ESA</h3>
+
+<p>Đáp ứng kém với ESA được định nghĩa là tình trạng không thể đạt được nồng độ Hb mục tiêu mặc dù đã sử dụng ESA với liều cao hơn mức thông thường, hoặc cần tăng dần liều ESA để duy trì nồng độ Hb mục tiêu [90, 91]. Tình trạng đáp ứng kém với ESA có liên quan đến sự gia tăng nguy cơ xảy ra các biến cố tim mạch bất lợi nghiêm trọng (MACE) [92–94].</p>
+
+<p>Tuy nhiên, hiện chưa có sự đồng thuận về định nghĩa đáp ứng kém với ESA giữa các tổ chức, chẳng hạn như KDOQI (Kidney Disease Outcomes Quality Initiative), KDIGO và ERBP. Các khuyến cáo khác nhau được tóm tắt trong Bảng 5.</p>
+
+
+<div class="table-wrapper">
+    <table style="font-size: 14px; width: 100%;">
+        <caption style="text-align: center; font-weight: bold; margin-bottom: 8px; font-size: 16px;">
+            Bảng 5. Định nghĩa tình trạng đáp ứng kém với ESA trong bệnh thận mạn theo các hướng dẫn khác nhau
+        </caption>
+
+        <thead>
+            <tr>
+                <th scope="col" style="width: 14%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Nguồn
+                </th>
+                <th scope="col" class="ws-nowrap" style="width: 8%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Năm
+                </th>
+                <th scope="col" style="width: 34%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Định nghĩa
+                </th>
+                <th scope="col" style="width: 22%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Ngưỡng liều ESA
+                </th>
+                <th scope="col" style="width: 22%; text-align: center; vertical-align: middle; background-color: var(--brand) !important; color: #ffffff !important;">
+                    Ghi chú
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    EBPG [97]
+                </th>
+                <td class="ws-nowrap" style="text-align: center; vertical-align: top;">
+                    2004
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không đạt được hoặc không duy trì được Hb mục tiêu mặc dù sử dụng:</p>
+                    <ul>
+                        <li>Epoetin \(\ge 300\text{ IU/kg/tuần}\), hoặc</li>
+                        <li>Darbepoetin alfa \(\ge 1{,}5\text{ µg/kg/tuần}\).</li>
+                    </ul>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>\(\sim 20\,000\text{ IU/tuần}\) đối với epoetin hoặc \(\sim 100\text{ µg/tuần}\) đối với darbepoetin.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Dựa trên các ngưỡng liều cố định.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    KDOQI [96]
+                </th>
+                <td class="ws-nowrap" style="text-align: center; vertical-align: top;">
+                    2006
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không đạt được hoặc không duy trì được Hb mục tiêu mặc dù sử dụng:</p>
+                    <ul>
+                        <li>Epoetin đường tĩnh mạch \(\ge 450\text{ IU/kg/tuần}\), hoặc</li>
+                        <li>Epoetin tiêm dưới da \(\ge 300\text{ IU/kg/tuần}\).</li>
+                    </ul>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>\(\ge 450\text{ IU/kg/tuần}\) (IV) hoặc \(\ge 300\text{ IU/kg/tuần}\) (SC).</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không quy định ngưỡng liều đối với darbepoetin; sử dụng cách tiếp cận dựa trên các ngưỡng liều cao cố định.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    KDIGO [2]
+                </th>
+                <td class="ws-nowrap" style="text-align: center; vertical-align: top;">
+                    2012
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Đáp ứng kém ban đầu: Hb không tăng sau \(1\) tháng sử dụng ESA với liều phù hợp. Đáp ứng kém mắc phải: Cần tăng liều ESA \(\ge 2\) lần (tối đa cao hơn \(50\%\) so với liều ổn định trước đó) để duy trì Hb.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không quy định ngưỡng liều cố định.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Tập trung vào đáp ứng tương đối; không khuyến khích tăng liều lặp đi lặp lại.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    NICE (Vương quốc Anh) [95]
+                </th>
+                <td class="ws-nowrap" style="text-align: center; vertical-align: top;">
+                    2015
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Nghi ngờ đáp ứng kém với ESA nếu:</p>
+                    <ul>
+                        <li>Không đạt được Hb mục tiêu mặc dù đã tối ưu hóa việc bổ sung sắt và liều ESA.</li>
+                        <li>Sử dụng ESA liều cao nhưng không đạt được đáp ứng Hb tương xứng.</li>
+                    </ul>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không có ngưỡng liều cụ thể; dựa trên đánh giá lâm sàng.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Được sử dụng trong thực hành lâm sàng và các đánh giá công nghệ y tế; đưa ra ước tính thận trọng về tỷ lệ hiện mắc.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    UK Kidney Association [24]
+                </th>
+                <td class="ws-nowrap" style="text-align: center; vertical-align: top;">
+                    2025
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không đạt được Hb mục tiêu mặc dù sử dụng:</p>
+                    <ul>
+                        <li>Epoetin tiêm dưới da với liều \(> 300\text{ IU/kg/tuần}\) (hoặc epoetin đường tĩnh mạch \(450\text{ IU/kg/tuần}\)), hoặc</li>
+                        <li>Darbepoetin với liều \(> 1{,}5\text{ µg/kg/tuần}\), hoặc</li>
+                        <li>Liều tương đương của methoxy ethylene glycol epoetin beta.</li>
+                    </ul>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Xem cột bên trái.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Cân nhắc:</p>
+                    <ul>
+                        <li>Chấp nhận mức Hb mục tiêu thấp hơn.</li>
+                        <li>Thử điều trị thay thế bằng HIF-PHI.</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row" style="vertical-align: top; text-align: left;">
+                    KDIGO [1]
+                </th>
+                <td class="ws-nowrap" style="text-align: center; vertical-align: top;">
+                    2026
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không có định nghĩa rõ ràng: Không đạt được Hb mục tiêu mặc dù đã tăng liều ESA đáng kể, hoặc tiếp tục cần sử dụng ESA liều cao để duy trì Hb mục tiêu.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <p>Không quy định ngưỡng liều cố định; tập trung vào mức tăng liều tương đối và đánh giá lại tình trạng lâm sàng.</p>
+                </td>
+                <td style="vertical-align: top;">
+                    <ul>
+                        <li>Tập trung vào đáp ứng tương đối.</li>
+                        <li>Tránh sử dụng ESA liều quá cao và tiếp tục tăng liều quá mức.</li>
+                        <li>Tìm kiếm các nguyên nhân có thể đảo ngược.</li>
+                        <li>Cân nhắc HIF-PHI ở những người bệnh được lựa chọn.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<p>Theo KDOQI, đáp ứng kém với ESA được định nghĩa là tình trạng không đạt được hoặc không duy trì được nồng độ Hb mong muốn mặc dù đã sử dụng epoetin đường tĩnh mạch với liều tối đa \(450\text{ đơn vị/kg/tuần}\) hoặc epoetin tiêm dưới da với liều \(300\text{ đơn vị/kg/tuần}\) [96]. Không có tiêu chí nào được đưa ra đối với darbepoetin alfa. Theo thông tin trong tờ hướng dẫn sử dụng thuốc, liều epoetin \(45.000\text{ đơn vị/tuần}\) tương đương khoảng \(100\text{ µg/tuần}\) darbepoetin alfa.</p>
+
+<p>Năm 2012, KDIGO định nghĩa đáp ứng kém với ESA là tình trạng nồng độ Hb không tăng so với ban đầu sau tháng đầu tiên điều trị bằng ESA với liều phù hợp dựa trên cân nặng [2]. KDIGO cũng phân loại người bệnh là có đáp ứng kém mắc phải với ESA nếu sau một thời gian điều trị bằng ESA với liều ổn định, người bệnh cần tăng liều hai lần, với mức tăng lên đến \(50\%\) so với liều ổn định trước đó, để duy trì nồng độ Hb ổn định [2]. ERBP định nghĩa đáp ứng kém với ESA là tình trạng không đạt được hoặc không duy trì được nồng độ Hb mong muốn mặc dù đã sử dụng epoetin với liều \(300\text{ đơn vị/kg/tuần}\) (khoảng \(20.000\text{ đơn vị/tuần}\)) và darbepoetin alfa với liều \(1{,}5\text{ µg/kg/tuần}\) (khoảng \(100\text{ µg/tuần}\)) [97]. Việc sử dụng ESA phụ thuộc vào chính sách tại địa phương, phương thức lọc máu (PD so với HD) và cơ chế chi trả chi phí điều trị. Do đó, trên phương diện thực hành, có thể xem xét tình trạng đề kháng ESA khi người bệnh cần sử dụng liều ESA cao hơn liều được sử dụng ở \(90\%\) người bệnh tại đơn vị lọc máu. Tình trạng đáp ứng kém với ESA có thể là cấp tính hoặc mạn tính (\(> 4\) tháng), và tỷ lệ hiện mắc thay đổi giữa các khu vực địa lý [6, 98].</p>
+
+<p>Atzinger và cộng sự [99] đã đánh giá tỷ lệ hiện mắc tình trạng đáp ứng kém với ESA trong điều kiện thực hành lâm sàng thực tế, sử dụng cơ sở dữ liệu EuCliD của Fresenius Medical Care (FME) tại châu Âu và Nam Phi. Trong tổng số \(380.675\) người bệnh thận mạn đang điều trị thay thế thận (kidney replacement therapy, KRT), có \(85.259\) người bệnh đáp ứng kém với liệu pháp ESA. Tùy theo tiêu chí được sử dụng [KDIGO, Viện Y tế và Chất lượng Điều trị Quốc gia Anh (National Institute for Health and Care Excellence, NICE), chỉ số đề kháng tạo hồng cầu (erythropoiesis resistance index) và thuật toán dựa trên tính thực tiễn lâm sàng (clinical practicality algorithm, CPA)], tỷ lệ hiện mắc tình trạng đáp ứng kém với ESA dao động rất lớn, từ \(5{,}2\%\) (theo NICE) đến \(47{,}9\%\) (theo CPA). Người bệnh PD dường như có tỷ lệ đáp ứng kém với ESA thấp hơn; tuy nhiên, dữ liệu hiện còn rất hạn chế [99].</p>
+
+<p>Tương tự năm 2012, hướng dẫn KDIGO mới tiếp tục duy trì các định nghĩa về đáp ứng kém ban đầu và đáp ứng kém mắc phải với ESA, không đưa ra ngưỡng liều tuyệt đối cố định để xác định tình trạng đáp ứng kém mà thay vào đó nhấn mạnh mức tăng liều tương đối so với liều đã có hiệu quả trước đó. Hướng dẫn KDIGO mới cũng tiếp tục khẳng định tầm quan trọng của việc tránh tăng liều ESA lặp đi lặp lại ở những người bệnh không đáp ứng với điều trị. Nếu không xác định được nguyên nhân có thể đảo ngược, bác sĩ được khuyến cáo đánh giá lại chỉ định điều trị bằng ESA, tránh để người bệnh tiếp xúc với liều ESA quá cao và cân nhắc các phương pháp thay thế (ví dụ: tối ưu hóa điều trị bằng sắt, sử dụng HIF-PHI trong một số trường hợp được lựa chọn).</p>
+
+<p>Về khía cạnh này, HIF-PHI có thể có ưu thế về mặt lý thuyết so với ESA, vì các thuốc này thúc đẩy sự biểu hiện EPO được cảm ứng bởi tình trạng thiếu oxy, đồng thời làm giảm hepcidin và ferritin, và có thể cả các cytokine tiền viêm khác [85, 86, 100]. Tuy nhiên, một số dữ liệu lại cho thấy kết quả ngược lại [101], qua đó làm nổi bật sự tương tác phức tạp giữa hệ thống HIF và quá trình viêm. Theo một số phân tích thứ cấp của các thử nghiệm ngẫu nhiên có đối chứng giai đoạn 3, HIF-PHI có thể có hiệu quả trong việc làm tăng nồng độ Hb ở những người bệnh có các chỉ dấu viêm tăng cao mà không cần tăng liều thuốc [102, 103]. Tuy nhiên, tác động lâm sàng dường như không lớn. Hơn nữa, những người bệnh thực sự đáp ứng kém với điều trị hoặc có tình trạng viêm đáng kể đã bị loại trừ khỏi các thử nghiệm ngẫu nhiên có đối chứng này.</p>
+
+
+<p>Trong các Điểm thực hành từ 3.7.2 đến 3.7.4, hướng dẫn KDIGO mới khuyến cáo điều trị thử bằng HIF-PHI trong \(3\text{–}4\) tháng ở những người bệnh đáp ứng kém với ESA, nếu có chỉ định lâm sàng nhằm tăng nồng độ Hb, tránh truyền máu hoặc cải thiện các triệu chứng liên quan đến thiếu máu. Hướng dẫn cũng đề xuất sử dụng liều thấp nhất có thể để làm giảm các triệu chứng liên quan đến thiếu máu và/hoặc giảm nguy cơ phải truyền khối hồng cầu, đồng thời ngừng điều trị nếu không đạt được đáp ứng tạo hồng cầu mong muốn. Do những lo ngại về tính an toàn tim mạch được ghi nhận trong các thử nghiệm quy mô lớn trên toàn cầu đánh giá tính an toàn tim mạch, việc sử dụng HIF-PHI ở người bệnh thận mạn đáp ứng kém với ESA có thể làm gia tăng thêm nguy cơ vốn đã cao của các biến cố tim mạch nghiêm trọng ở nhóm người bệnh này [1]. Một số tác giả cũng thừa nhận rằng bằng chứng hỗ trợ cho các khuyến cáo này còn hạn chế [104–107]. Tuy nhiên, dữ liệu từ một phân tích thứ cấp của thử nghiệm ASCEND-D không cho thấy bằng chứng về sự khác biệt trong mối liên quan giữa tình trạng đề kháng ESA tại thời điểm ban đầu và nguy cơ MACE giữa nhóm được phân ngẫu nhiên sử dụng daprodustat và nhóm sử dụng ESA thông thường [92]. Chúng tôi đồng tình với các khuyến cáo này, đồng thời ủng hộ khuyến nghị nghiên cứu đánh giá tác động của HIF-PHI đối với các kết cục quan trọng và có ý nghĩa thiết yếu ở những người bệnh đáp ứng kém với ESA, bao gồm cả người bệnh DD-CKD và NDD-CKD. Do bằng chứng hiện có còn hạn chế, theo quan điểm của chúng tôi, quyết định tiếp tục hay ngừng điều trị bằng HIF-PHI cần được cá thể hóa dựa trên đáp ứng của từng người bệnh. Mặc dù hướng dẫn KDIGO 2026 đề xuất ngừng HIF-PHI sau \(3\) tháng ở những người bệnh không đáp ứng điều trị do lo ngại về nguy cơ tim mạch tiềm tàng [1], khoảng thời gian này có thể được xem là tương đối ngắn và hiện chưa có bằng chứng đủ vững chắc để hỗ trợ cho một quyết định mang tính dứt khoát như vậy.</p>
+
+<p>Mặt khác, chúng tôi đồng tình với Điểm thực hành 3.7.1 về việc xác định và điều trị các nguyên nhân nền tảng gây đáp ứng kém với ESA nếu có thể, đồng thời thừa nhận rằng khoảng \(30\%\) trường hợp không thể xác định được nguyên nhân. Hai nguyên nhân phổ biến nhất gây đáp ứng kém với ESA là thiếu sắt và/hoặc tình trạng viêm. Trước tiên, cần loại trừ tình trạng thiếu sắt tuyệt đối và/hoặc thiếu sắt chức năng. Tình trạng viêm kéo dài thường gặp ở người bệnh thận mạn [108] và có thể kích thích quá trình tổng hợp hepcidin, từ đó làm giảm biểu hiện của ferroportin, một protein vận chuyển sắt ra khỏi tế bào, dẫn đến tình trạng tạo hồng cầu trong tình trạng hạn chế cung cấp sắt [109]. Cần đánh giá các nguyên nhân thường gặp khác gây viêm mạn tính ở người bệnh DD-CKD, chẳng hạn như catheter, nhiễm trùng da hoặc vết thương, mảnh ghép mất chức năng (failed graft), hoặc nhiễm trùng tiềm ẩn tại cầu nối động–tĩnh mạch bằng mạch máu nhân tạo cũ đã mất chức năng. Hiệu quả lọc máu không đạt yêu cầu cũng có thể góp phần gây ra tình trạng đáp ứng không phù hợp với ESA. Những nguyên nhân tương đối ít gặp hơn có liên quan đến tình trạng đáp ứng kém với ESA bao gồm cường cận giáp nặng kèm viêm xương xơ nang (osteitis fibrosa cystica), các bệnh lý ác tính, các rối loạn huyết học tại tủy xương như hội chứng loạn sinh tủy, đa u tủy xương, bệnh bạch cầu lympho mạn tính và các bệnh lý hemoglobin như bệnh hồng cầu hình liềm, cũng như tình trạng thiếu hụt các chất dinh dưỡng như vitamin B12 và folat [110–112]. Một số thuốc cũng có thể làm giảm đáp ứng với ESA, chẳng hạn như thuốc ức chế bơm proton, thuốc ức chế men chuyển angiotensin và/hoặc thuốc chẹn thụ thể angiotensin II [113, 114].</p>
+
+<p>Chúng tôi cũng đồng tình với Điểm thực hành 3.7.6, trong đó khuyến cáo rằng ở những người bệnh nghi ngờ mắc bất sản đơn thuần dòng hồng cầu (pure red cell aplasia, PRCA) liên quan đến ESA, cần ngừng điều trị bằng ESA, truyền khối hồng cầu khi có chỉ định lâm sàng và cân nhắc chuyển khám chuyên khoa Huyết học. Việc điều trị có thể bao gồm liệu pháp ức chế miễn dịch và sử dụng HIF-PHI để điều trị thiếu máu trong giai đoạn tiếp theo, sau khi đã đánh giá cẩn thận nguy cơ, lợi ích và nguyện vọng của người bệnh.</p>
+
+<p>Khả năng các kháng thể kháng EPO phản ứng chéo với EPO nội sinh đặt ra nghi vấn về lợi ích bổ sung của HIF-PHI so với ESA trong điều trị thiếu máu ở giai đoạn tiếp theo. Tuy nhiên, một số báo cáo ca bệnh đã cho thấy hiệu quả của HIF-PHI trong bối cảnh này [115–117]. Do đó, có khả năng EPO nội sinh có tính sinh miễn dịch thấp hơn và HIF-PHI còn có những tác động có lợi bổ sung đối với tình trạng viêm tại tủy xương. Thật vậy, trong điều kiện sinh lý, bản thân EPO nội sinh không có tính sinh miễn dịch, mà chỉ trở thành đích tác động của các kháng thể kháng EPO sau khi sử dụng ESA ngoại sinh (chủ yếu qua đường tiêm dưới da). Đáng chú ý, một người bệnh đã đạt được tình trạng lui bệnh PRCA sau khi chuyển sang điều trị bằng roxadustat mà không cần sử dụng liệu pháp ức chế miễn dịch [117]. Ngoài ra, cần cân nhắc ghép thận ở những người bệnh phù hợp đang điều trị bằng lọc máu hoặc mắc bệnh thận mạn giai đoạn \(5\) nhằm điều trị PRCA qua trung gian kháng thể kháng EPO.</p>
+
+
+<h2 id="truyen-khoi-hong-cau">Truyền khối hồng cầu</h2>
+
+<p>Không có thay đổi lớn nào trong phần này so với hướng dẫn KDIGO năm 2012. Tuy nhiên, hướng dẫn mới khuyến khích áp dụng chiến lược truyền khối hồng cầu hạn chế, đặc biệt ở những người bệnh có khả năng được ghép thận, nhằm giảm thiểu nguy cơ mẫn cảm với kháng nguyên đồng loài (allosensitization).</p>
+
+<h2 id="nhung-noi-dung-con-thieu">Những nội dung còn thiếu</h2>
+
+<h3 id="chan-doan-va-dieu-tri-thieu-mau-theo-gioi-va-gioi-tinh-sinh-hoc">Chẩn đoán và điều trị thiếu máu theo giới và giới tính sinh học</h3>
+
+<p>Hướng dẫn KDIGO 2026 không đưa ra các khuyến cáo cụ thể liên quan đến sự khác biệt về giới hoặc giới tính sinh học trong chẩn đoán, quản lý thiếu máu hoặc đáp ứng điều trị [1].</p>
+
+<p>Đây là một khoảng trống của hướng dẫn, đặc biệt trong bối cảnh vai trò của y học giới ngày càng được quan tâm. Nhiều khía cạnh của tình trạng thiếu máu trong bệnh thận mạn chịu ảnh hưởng của giới tính sinh học, bao gồm nồng độ Hb ban đầu, chuyển hóa sắt và khả năng đáp ứng với ESA. Tổ chức Y tế Thế giới (WHO) định nghĩa thiếu máu dựa trên các ngưỡng Hb riêng theo giới tính, có tính đến những khác biệt sinh lý giữa nam và nữ [10]. Thiếu máu trong bệnh thận mạn có tỷ lệ hiện mắc ở nữ giới cao hơn nam giới [118]. Ngoài ra, nữ giới có xu hướng có nồng độ Hb thấp hơn nam giới ở tất cả các giai đoạn bệnh thận mạn, mặc dù sự khác biệt này thu hẹp dần khi eGFR giảm [119]. Các kết cục sức khỏe bất lợi liên quan đến thiếu máu do bệnh thận mạn dường như cũng nghiêm trọng hơn ở nữ giới so với nam giới [118, 120]. Dữ liệu lâm sàng cho thấy phụ nữ đang điều trị bằng lọc máu cần sử dụng ESA với liều cao hơn nam giới để đạt được nồng độ Hb tương đương [121]. Hiện tượng này có thể do nhiều yếu tố, bao gồm mất sắt nhiều hơn, tình trạng thiếu sắt thường gặp hơn và sự khác biệt về độ nhạy với ESA. Do việc sử dụng ESA liều cao hơn đã được chứng minh có liên quan đến nguy cơ MACE gia tăng trong các thử nghiệm ngẫu nhiên có đối chứng, những khác biệt liên quan đến giới tính này có thể mang ý nghĩa lâm sàng quan trọng. Hiện vẫn chưa rõ liệu có nên áp dụng cùng mức Hb mục tiêu cho nam và nữ trong quá trình điều trị bằng ESA/HIF-PHI hay không, khi xét đến sự khác biệt về ngưỡng Hb dùng để chẩn đoán thiếu máu. Hơn nữa, mặc dù các thử nghiệm lớn như PIVOTAL [5] đã chứng minh lợi ích của chiến lược bổ sung sắt đường tĩnh mạch chủ động, mức độ áp dụng tương đương của những phát hiện này giữa hai giới vẫn chưa được nghiên cứu làm rõ.</p>
+
+<h3 id="nhung-luu-y-dac-biet-trong-thai-ky">Những lưu ý đặc biệt trong thai kỳ</h3>
+
+<p>Hướng dẫn KDIGO 2026 không đưa ra các khuyến cáo hoặc bình luận cụ thể về chẩn đoán và quản lý thiếu máu trong thai kỳ [1].</p>
+
+<p>Thai kỳ gây ra những thay đổi sinh lý đặc thù, ảnh hưởng đến cả chẩn đoán và điều trị thiếu máu. Sự gia tăng thể tích huyết tương dẫn đến hiện tượng pha loãng máu, làm giảm nồng độ Hb đo được mà không phụ thuộc vào khối lượng hồng cầu. Đồng thời, nhu cầu sắt của thai nhi và nhau thai làm tăng tốc độ suy giảm dự trữ sắt, từ đó làm tăng nguy cơ thiếu sắt tuyệt đối và thiếu sắt chức năng. Cuối cùng, trong ba tháng cuối thai kỳ và thời kỳ hậu sản, phụ nữ có nguy cơ huyết khối tăng cao về mặt sinh lý so với dân số chung; nguy cơ này có thể tiếp tục gia tăng khi điều trị bằng ESA. Những thay đổi này có thể đòi hỏi các ngưỡng chẩn đoán và mục tiêu điều trị khác so với quần thể không mang thai. WHO định nghĩa thiếu máu trong thai kỳ là \(\text{Hb} < 11\text{ g/dL}\) tại bất kỳ thời điểm nào trong thai kỳ [122]. Ngược lại, các hướng dẫn khác đề xuất định nghĩa thiếu máu dựa trên từng tam cá nguyệt (tam cá nguyệt thứ nhất và thứ ba: \(\text{Hb} < 11\text{ g/dL}\); tam cá nguyệt thứ hai: \(\text{Hb} < 10{,}5\text{ g/dL}\)) [123, 124]. Theo quan điểm của chúng tôi, những ngưỡng cụ thể hơn này cũng nên được cân nhắc áp dụng cho phụ nữ mang thai mắc bệnh thận mạn.</p>
+
+<p>Theo các hướng dẫn sản khoa [123, 124], sắt đường uống (\(100\text{–}200\text{ mg}\) sắt nguyên tố mỗi ngày) được khuyến cáo là liệu pháp đầu tay trong điều trị thiếu máu thiếu sắt ở phụ nữ mang thai. Sắt đường tĩnh mạch được chỉ định trong trường hợp không dung nạp, kém hấp thu hoặc khi \(\text{Hb} < 10{,}0\text{ g/dL}\) vẫn sau 4 tuần điều trị bằng sắt đường uống. Cách tiếp cận này được hỗ trợ bởi các bằng chứng cho thấy điều trị bằng sắt trong thai kỳ, đặc biệt là sắt đường tĩnh mạch được sử dụng trong tam cá nguyệt thứ hai, có thể làm giảm nguy cơ xảy ra các kết cục bất lợi như nhiễm trùng ở mẹ, trẻ sơ sinh nhẹ cân và sinh non [125–127]. Cần lưu ý rằng sắt đường tĩnh mạch chống chỉ định trong tam cá nguyệt thứ nhất. Hiện chưa có dữ liệu về định nghĩa chính xác tình trạng thiếu sắt trong thai kỳ ở người bệnh thận mạn. Tuy nhiên, việc áp dụng các tiêu chí tương tự như những tiêu chí được sử dụng để xác định thiếu sắt tuyệt đối nói chung ở quần thể người bệnh thận mạn có vẻ hợp lý (nghĩa là sử dụng ngưỡng ferritin huyết thanh cao hơn so với ngưỡng áp dụng cho dân số chung).</p>
+
+<p>Việc sử dụng ESA trong thai kỳ không bị chống chỉ định; tuy nhiên, kinh nghiệm lâm sàng còn hạn chế và các dữ liệu hiện có chưa đủ để xác lập tính an toàn. Theo thông tin được cơ quan quản lý dược phê duyệt trên nhãn thuốc, cần thận trọng khi sử dụng ESA trong trường hợp lợi ích tiềm năng đối với người mẹ lớn hơn nguy cơ đối với thai nhi. Đặc biệt, các lọ đa liều của chế phẩm epoetin alfa (ví dụ: Eprex®, Epogen®, Procrit®) có chứa benzyl alcohol, một chất bảo quản chống chỉ định trong thai kỳ và thời kỳ cho con bú do có liên quan đến độc tính đối với thai nhi và trẻ sơ sinh. Vì vậy, trong bối cảnh này, chỉ nên cân nhắc sử dụng các chế phẩm đơn liều không chứa chất bảo quản.</p>
+
+<p>HIF-PHI chống chỉ định trong thai kỳ vì các thuốc này chưa được nghiên cứu trên quần thể phụ nữ mang thai và hồ sơ an toàn của chúng vẫn chưa được xác định.</p>
+
+<p>Hiện chưa có dữ liệu để xác định liệu có cần điều chỉnh mức Hb mục tiêu trong quá trình điều trị bằng ESA ở phụ nữ mang thai mắc bệnh thận mạn hay không. Tuy nhiên, xét đến ngưỡng Hb chẩn đoán thiếu máu thấp hơn trong thai kỳ và nguy cơ huyết khối gia tăng liên quan đến điều trị bằng ESA, việc hướng đến mức Hb mục tiêu thấp hơn có thể là phù hợp. Cần có thêm các nghiên cứu trong tương lai nhằm cung cấp cơ sở bằng chứng cho việc quản lý thiếu máu một cách cá thể hóa ở phụ nữ mang thai mắc bệnh thận mạn [128].</p>
+
+
+<h3 id="thuoc-uc-che-sglt2-thieu-mau-va-tang-hong-cau">Thuốc ức chế SGLT2, thiếu máu và tăng hồng cầu</h3>
+
+<p>Các thuốc ức chế đồng vận chuyển natri–glucose 2 (sodium-glucose cotransporter 2 inhibitors, SGLT2i) được chỉ định trong điều trị đái tháo đường típ 2, suy tim và bệnh thận mạn [9]. Kể từ những thử nghiệm lâm sàng đầu tiên trên người bệnh đái tháo đường típ 2, và sau đó là các thử nghiệm trên người bệnh suy tim và bệnh thận mạn, những thuốc này đã cho thấy tác dụng làm tăng nồng độ Hb/Hct sớm và kéo dài [129, 130]. Ban đầu, sự gia tăng Hb/Hct được cho là do hiện tượng cô đặc máu gây ra bởi tác dụng lợi tiểu và giảm thể tích huyết tương. Tuy nhiên, các nghiên cứu sau đó đã chứng minh sự gia tăng sớm nồng độ EPO và/hoặc số lượng hồng cầu lưới, ở cả người bệnh có chức năng thận bình thường lẫn người bệnh suy giảm chức năng thận, qua đó xác nhận tác dụng kích thích trực tiếp quá trình tạo hồng cầu của các thuốc này [129, 130].</p>
+
+<p>SGLT2i cũng gây ra những thay đổi về các dấu ấn sinh học liên quan đến sắt, gợi ý sự tăng cường chuyển hóa sắt. Các thuốc này đã được chứng minh làm giảm nồng độ hepcidin và ferritin, trong khi một số nghiên cứu ghi nhận sự gia tăng erythroferrone, transferrin hoặc khả năng gắn sắt toàn phần (total iron-binding capacity, TIBC), cũng như thụ thể transferrin hòa tan, với những tác động khác nhau lên nồng độ sắt huyết thanh và TSAT [131, 132]. Tất cả những thay đổi này đều cho thấy sự tăng cường quá trình tạo hồng cầu và cải thiện khả năng cung cấp cũng như sử dụng sắt.</p>
+
+<p>SGLT2i làm giảm tỷ lệ hiện mắc thiếu máu và nguy cơ xuất hiện thiếu máu về sau ở người bệnh đái tháo đường típ 2, suy tim hoặc bệnh thận mạn [131, 132].</p>
+
+<p>Ở người bệnh thận mạn, các thử nghiệm lâm sàng giai đoạn 3 cho thấy Hb tăng trung bình khoảng \(0.7\text{ g/dL}\) và Hct tăng từ \(2.2\%\) đến \(2.4\%\) so với giả dược [133–135]. Hơn nữa, SGLT2i làm tăng đáp ứng tạo hồng cầu với sắt đường tĩnh mạch và đường uống ở những người bệnh có tình trạng thiếu sắt [136–138].</p>
+
+<p>Mặt khác, các thuốc này có thể gây tăng hồng cầu (erythrocytosis), một tình trạng có thể liên quan đến nguy cơ huyết khối cao hơn do tăng độ nhớt của máu [139]. Hiện chưa rõ liệu SGLT2i có làm tăng nguy cơ huyết khối ở người bệnh thận mạn có tình trạng tăng hồng cầu hay không, mặc dù không thể loại trừ hoàn toàn khả năng gây hại. Trong thử nghiệm EMPEROR-Preserved (Empagliflozin Outcome Trial in Patients With Chronic HF With Preserved Ejection Fraction), việc được phân ngẫu nhiên vào nhóm điều trị bằng empagliflozin, nhưng không phải nhóm giả dược, có liên quan đến nguy cơ xảy ra các biến cố cao hơn ở những người bệnh đã có tình trạng tăng hồng cầu tại thời điểm ban đầu. Tuy nhiên, sự gia tăng này không có ý nghĩa thống kê do số lượng biến cố thấp [140].</p>
+
+<p>Đáng chú ý, trong một phân tích gộp hậu kiểm (post-hoc pooled analysis) từ chương trình nghiên cứu CANVAS (CANagliflozin Cardiovascular Assessment Study) và thử nghiệm CREDENCE (Canagliflozin and Renal Events in Diabetes with Established Nephropathy Clinical Evaluation), nồng độ Hct tại thời điểm ban đầu có ảnh hưởng đến hiệu quả điều trị đối với kết cục chính ở nam giới, nhưng không ghi nhận hiện tượng này ở nữ giới [141]. Hơn nữa, phân tích này cho thấy khả năng gây hại ở nam giới có tình trạng tăng hồng cầu, chủ yếu do nguy cơ nhồi máu cơ tim gia tăng [141]. Gần đây, một nghiên cứu hồi cứu cho thấy tình trạng tăng hồng cầu xuất hiện ở \(16.9\%\) người bệnh sử dụng SGLT2i, trong đó những người mắc bệnh thận mạn có nguy cơ thấp hơn [142]. Huyết khối động mạch là một biến cố hiếm gặp (\(0.5\%\), \(33\) người bệnh) và không thể quy trực tiếp cho tình trạng tăng hồng cầu do SGLT2i gây ra [142]. Một nghiên cứu hồi cứu quy mô lớn khác trên \(137\,552\) người trưởng thành mắc đái tháo đường típ 2 không ghi nhận bất kỳ mối liên quan nào giữa tình trạng tăng hồng cầu mới xuất hiện sau khi sử dụng SGLT2i với nguy cơ gia tăng nhồi máu cơ tim, huyết khối tắc mạch tĩnh mạch hoặc đột quỵ [143]. Những kết quả tương tự cũng đã được báo cáo ở người bệnh suy tim có phân suất tống máu giảm (HFrEF) [144]. Ngoại lệ duy nhất đến từ một nghiên cứu đoàn hệ hồi cứu sử dụng hồ sơ bệnh án của hơn \(50\) tổ chức chăm sóc sức khỏe tại Hoa Kỳ, trong đó so sánh dữ liệu của những người bệnh đái tháo đường sử dụng các nhóm thuốc điều trị đái tháo đường khác nhau [145]. Những người sử dụng SGLT2i xuất hiện tình trạng tăng hồng cầu có tỷ lệ mắc các biến cố huyết khối tắc mạch cao hơn so với những người không xuất hiện tình trạng này.</p>
+
+<p>Nhìn chung, tính an toàn của SGLT2i ở người bệnh thận mạn có tình trạng tăng hồng cầu cần được nghiên cứu thêm. Trong bối cảnh này, cần loại trừ bệnh đa hồng cầu nguyên phát (polycythaemia vera) đồng mắc, vì người bệnh mắc bệnh lý này có nguy cơ huyết khối cao [146]. Cần nghi ngờ bệnh đa hồng cầu nguyên phát khi \(\text{Hb} > 16.5\text{ g/dL}\) ở nam giới hoặc \(> 16\text{ g/dL}\) ở nữ giới, đặc biệt nếu kèm theo một hoặc nhiều đặc điểm gợi ý sau: thiếu sắt, tăng bạch cầu, tăng tiểu cầu, ngứa hoặc lách to.</p>
+
+
+<h3 id="thieu-mau-trong-benh-than-man-va-cac-thuoc-chong-viem">Thiếu máu trong bệnh thận mạn và các thuốc chống viêm</h3>
+
+<p>Ở người bệnh thận mạn, tình trạng viêm mạn tính mức độ thấp đóng vai trò trung tâm không chỉ trong cơ chế bệnh sinh của thiếu máu và tình trạng đáp ứng kém với ESA, mà còn trong sự hình thành và tiến triển của xơ vữa động mạch, góp phần làm gia tăng đáng kể gánh nặng bệnh tật và tử vong do tim mạch ở quần thể này [147], cũng như thúc đẩy sự tiến triển của bệnh thận mạn [147]. Các liệu pháp chống viêm đã được phát triển trong bệnh thận mạn nhằm tác động vào tình trạng viêm dai dẳng và làm chậm quá trình tiến triển nhanh của bệnh tim mạch. Các liệu pháp chống viêm cũng có thể làm giảm tỷ lệ hiện mắc thiếu máu và tăng nồng độ Hb ở người bệnh thận mạn có thiếu máu. Trong một phân tích hậu kiểm của nghiên cứu CANTOS (Canakinumab Anti-inflammatory Thrombosis Outcomes Study), canakinumab — một kháng thể đơn dòng nhắm đích interleukin-1β (IL-1β) — làm giảm tỷ lệ mắc mới thiếu máu và tăng nồng độ Hb thêm \(1{,}13\text{ g/dL}\) ở những người bệnh đã có thiếu máu tại thời điểm ban đầu, so với giả dược, trong quần thể người có tiền sử nhồi máu cơ tim và nồng độ protein phản ứng C độ nhạy cao (high-sensitivity C-reactive protein, hsCRP) tăng [148].</p>
+
+<p>Ziltivekimab, một kháng thể đơn dòng hoàn toàn từ người nhắm đích IL-6, làm giảm đáng kể tình trạng viêm, nhu cầu sử dụng ESA và chỉ số đề kháng tạo hồng cầu, đồng thời làm tăng nồng độ sắt huyết thanh, transferrin và khả năng gắn sắt toàn phần (TIBC) ở người bệnh thẩm tách máu (HD) mang biến thể đa hình TMPRSS6 rs855791, trong một thử nghiệm giai đoạn \(1\text{–}2\) có đối chứng giả dược [149]. Tương tự, trong một phân tích thăm dò của thử nghiệm RESCUE (Trial to Evaluate Reduction in Inflammation in Patients With Advanced Chronic Renal Disease Utilizing Antibody-Mediated IL-6 Inhibition), ziltivekimab làm tăng đáng kể nồng độ Hb, sắt huyết thanh, TIBC và TSAT sau \(12\) tuần ở người bệnh thận mạn giai đoạn \(3\text{–}5\) có tình trạng viêm toàn thân, so với giả dược [150].</p>
+
+<p>Clazakizumab, một kháng thể đơn dòng kháng IL-6 khác đã được nhân hóa, có liên quan đến việc giảm nhu cầu bắt đầu điều trị bằng ESA hoặc tăng liều ESA trong một phân tích hậu kiểm của thử nghiệm giai đoạn 2b (POSIBIL6ESKD) trên người bệnh lọc máu có bệnh tim mạch và/hoặc đái tháo đường kèm nồng độ hsCRP tăng cao [151]. Thuốc cũng làm tăng TSAT, nồng độ sắt huyết thanh và TIBC, đồng thời làm giảm nồng độ hepcidin [151].</p>
+
+<p>Những kết quả này củng cố vai trò của tình trạng viêm trong cơ chế bệnh sinh của thiếu máu ở người bệnh thận mạn, đồng thời cho thấy tiềm năng sử dụng các liệu pháp chống viêm, đặc biệt ở những người bệnh đề kháng với ESA. Tuy nhiên, hiện các liệu pháp này vẫn chưa sẵn có để sử dụng trong thực hành lâm sàng.</p>
+
+
+<h2 id="ket-luan">Kết luận</h2>
+
+<p>Hướng dẫn KDIGO 2026 về thiếu máu trong bệnh thận mạn là một bản cập nhật quan trọng so với phiên bản năm 2012, dựa trên những bằng chứng mới về các chiến lược điều trị bằng sắt đường tĩnh mạch, trong đó nhấn mạnh hơn việc áp dụng các phương pháp bổ sung sắt chủ động. Sau khi một số thuốc thuộc nhóm HIF-PHI được đưa vào sử dụng trong thực hành lâm sàng, hướng dẫn đã bổ sung một phần đề cập đến nhóm thuốc điều trị thiếu máu này. Tài liệu tiếp tục khẳng định rằng việc quản lý thiếu máu cần được cá thể hóa, lấy người bệnh làm trung tâm và lồng ghép vào quá trình quản lý toàn diện bệnh thận mạn.</p>
+
+<p>Dưới góc nhìn châu Âu, hướng dẫn KDIGO 2026 vẫn đặt ra một số thách thức, bao gồm nhiều câu hỏi chưa được giải đáp và việc thiếu các chỉ dẫn cụ thể cho một số nhóm người bệnh đặc biệt. Những hạn chế này xuất phát từ tình trạng thiếu bằng chứng khoa học có độ tin cậy cao ở nhiều khía cạnh trong lĩnh vực này, đặc biệt liên quan đến tính an toàn dài hạn của HIF-PHI, khả năng áp dụng dữ liệu từ các thử nghiệm lâm sàng cho những quần thể người bệnh rộng hơn và các ngưỡng điều trị bằng sắt tối ưu. Những vấn đề về tính an toàn của ESA và HIF-PHI ở một số phân nhóm người bệnh nhấn mạnh sự cần thiết phải áp dụng các phương pháp điều trị được cá thể hóa.</p>
+
+<p>Những hướng dẫn này đánh dấu một bước tiến trong thực hành thận học dựa trên bằng chứng, cung cấp cho các bác sĩ lâm sàng tại châu Âu những khuyến cáo cập nhật nhằm quản lý tình trạng thiếu máu liên quan đến bệnh thận mạn.</p>
+
+
+
+
+</article>
+    </section>
+  </main>
+</div>
+
+<!-- Print-only header/footer. Hidden during normal reading; shown only in print. -->
+<div class="print-header" aria-hidden="true">
+  <div class="print-layout-left">
+    <svg class="print-contact-icon facebook-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.019 4.388 11.006 10.125 11.923v-8.432H7.078v-3.491h3.047V9.413c0-3.017 1.792-4.689 4.533-4.689 1.312 0 2.686.235 2.686.235v2.973h-1.514c-1.491 0-1.955.93-1.955 1.885v2.261h3.328l-.532 3.491h-2.796v8.432C19.612 23.079 24 18.092 24 12.073z"/>
+    </svg>
+    <span>Hoàng Linh</span>
+  </div>
+  <div class="print-layout-center">
+    <span>Link bài đọc:</span>
+    <a href="https://huberton176.github.io/kdigo2026anemia_ckd/">https://huberton176.github.io/kdigo2026anemia_ckd/</a>
+  </div>
+  <div class="print-layout-right">
+    <svg class="print-contact-icon mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/>
+    </svg>
+    <span>dr.tthlinh@gmail.com</span>
+  </div>
+</div>
+
+<div class="print-footer" aria-hidden="true">
+  <div class="print-layout-left">
+    <svg class="print-contact-icon facebook-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.019 4.388 11.006 10.125 11.923v-8.432H7.078v-3.491h3.047V9.413c0-3.017 1.792-4.689 4.533-4.689 1.312 0 2.686.235 2.686.235v2.973h-1.514c-1.491 0-1.955.93-1.955 1.885v2.261h3.328l-.532 3.491h-2.796v8.432C19.612 23.079 24 18.092 24 12.073z"/>
+    </svg>
+    <span>Hoàng Linh</span>
+  </div>
+  <div class="print-layout-center">
+    <span>Link bài đọc:</span>
+    <a href="https://huberton176.github.io/kdigo2026anemia_ckd/">https://huberton176.github.io/kdigo2026anemia_ckd/</a>
+  </div>
+  <div class="print-layout-right">
+    <svg class="print-contact-icon mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/>
+    </svg>
+    <span>dr.tthlinh@gmail.com</span>
+  </div>
+</div>
+
+<div class="print-watermark" aria-hidden="true">
+  <img src="https://file.garden/aRcee0oeuCLsBw6X/logo" alt="">
+</div>
+
+<script>
+
+(function(){
+
+  const root = document.documentElement;
+  const hero = document.getElementById("readerHero");
+  const tocList = document.getElementById("tocList");
+  const mobileToc = document.getElementById("mobileToc");
+  const progressText = document.getElementById("progressText");
+  const fontKey = "ml-integrated-font";
+  const themeKey = "ml-integrated-theme";
+  let fontScale = Number(localStorage.getItem(fontKey) || "1");
+
+  const $allHeadings = () => Array.from(document.querySelectorAll(
+    ".document-surface article h2, .document-surface article h3, .document-surface article h4"
+  ));
+
+  function normalize(t){ return String(t || "").replace(/\s+/g," ").trim(); }
+
+  function buildTOC(){
+    const headings = $allHeadings();
+    tocList.innerHTML = "";
+    mobileToc.innerHTML = '<option value="">Mục lục tài liệu…</option>';
+
+    headings.forEach((heading, index) => {
+      if (!heading.id) heading.id = "section-" + (index + 1);
+
+      const level = Number(heading.tagName.slice(1));
+      const label = normalize(heading.textContent);
+
+      const li = document.createElement("li");
+      li.className = "level-" + level;
+
+      const link = document.createElement("a");
+      link.href = "#" + heading.id;
+      link.dataset.target = heading.id;
+      link.textContent = label;
+
+      link.addEventListener("click", function(e){
+        e.preventDefault();
+        heading.scrollIntoView({behavior:"smooth", block:"start"});
+        history.replaceState(null, "", "#" + encodeURIComponent(heading.id));
+      });
+
+      li.appendChild(link);
+      tocList.appendChild(li);
+
+      const option = document.createElement("option");
+      option.value = heading.id;
+      option.textContent = ("— ".repeat(Math.max(0, level - 2))) + label;
+      mobileToc.appendChild(option);
+    });
+
+    updateActive(headings);
+  }
+
+  function updateActive(headings){
+    if (!headings.length) return;
+
+    // Trên mobile, Hero không còn sticky nên giảm khoảng bù trừ cuộn (offset)
+    const isMobile = window.innerWidth <= 980;
+    const stickyShell = document.querySelector(".mobile-sticky-shell");
+    const heroOffset = isMobile
+      ? ((stickyShell ? stickyShell.getBoundingClientRect().height : hero.getBoundingClientRect().height) + 16)
+      : (hero.getBoundingClientRect().height + 30);
+    const cursor = window.scrollY + heroOffset;
+    let current = headings[0];
+
+    for (const heading of headings){
+      const top = heading.getBoundingClientRect().top + window.scrollY;
+      if (top <= cursor) current = heading;
+      else break;
+    }
+
+    document.querySelectorAll("#tocList a").forEach(link => {
+      link.classList.toggle("active", link.dataset.target === current.id);
+    });
+
+    if (mobileToc) mobileToc.value = current.id;
+  }
+
+  function updateProgress(){
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const percent = Math.min(100, Math.max(0, Math.round(window.scrollY / max * 100)));
+    progressText.textContent = percent + "%";
+    updateActive($allHeadings());
+  }
+
+  function applyFont(){
+    // Gán tỉ lệ vào biến CSS thay vì ép cứng 18px vào thẻ
+    root.style.setProperty("--font-scale", fontScale.toFixed(2));
+    localStorage.setItem(fontKey, fontScale.toFixed(2));
+  }
+
+  function applyTheme(theme){
+    root.dataset.theme = theme;
+    localStorage.setItem(themeKey, theme);
+  }
+
+
+
+  mobileToc.addEventListener("change", function(){
+    if (!this.value) return;
+    const target = document.getElementById(this.value);
+    if (target) target.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+
+  window.addEventListener("scroll", updateProgress, {passive:true});
+  window.addEventListener("resize", function(){
+    updateProgress();
+  });
+
+  applyTheme(localStorage.getItem(themeKey) || "light");
+  applyFont();
+  buildTOC();
+
+  updateProgress();
+
+  const hash = decodeURIComponent(location.hash.replace(/^#/,""));
+  if (hash){
+    const target = document.getElementById(hash);
+    if (target) setTimeout(() => target.scrollIntoView({behavior:"auto", block:"start"}), 100);
+  }
+})();
+
+</script>
+
+</body>
+</html>
